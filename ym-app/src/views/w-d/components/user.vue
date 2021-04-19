@@ -1,6 +1,6 @@
 <template>
-    <div class="wenben">
-        新闻文本
+    <div class="user">
+        我的user
     </div>
 </template>
 <script>

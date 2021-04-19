@@ -2,20 +2,20 @@
   <div class="xinwen">
     <search></search>
     <wenben></wenben>
-    <nav></nav>
+    <navs></navs>
     <neirong></neirong>
   </div>
 </template>
 <script>
 import search from "../xinwen/components/search";
 import wenben from "../xinwen/components/wenben";
-import nav from "../xinwen/components/nav";
-import neirong from "../xinwen/components/neirong ";
+import navs from "../xinwen/components/navs";
+import neirong from "../xinwen/components/neirong";
 export default {
-  comments: {
+  components: {
     search,
     wenben,
-    nav,
+    navs,
     neirong,
   },
 };

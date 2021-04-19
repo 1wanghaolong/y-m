@@ -1,6 +1,6 @@
 <template>
-    <div class="nav">
-        助手导航
+    <div class="wd-nav">
+        我的nav
     </div>
 </template>
 <script>

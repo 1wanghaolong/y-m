@@ -1,6 +1,6 @@
 <template>
-    <div class="wenben">
-        新闻文本
+    <div class="navs">
+        新闻 navs
     </div>
 </template>
 <script>

@@ -1,6 +1,6 @@
 <template>
-    <div class="nav">
-        
+    <div class="nav-zs">
+        助手导航
     </div>
 </template>
 <script>

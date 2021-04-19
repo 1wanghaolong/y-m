@@ -2,20 +2,20 @@
   <div class="zhushou">
     <tou></tou>
     <ceping></ceping>
-    <nav></nav>
+    <navzs></navzs>
     <jianyi></jianyi>
   </div>
 </template>
 <script>
 import tou from "../j-k-zhushou/components/tou";
 import ceping from "../j-k-zhushou/components/jianyi";
-import nav from "../j-k-zhushou/components/nav";
+import navzs from "../j-k-zhushou/components/nav-zs";
 import jianyi from "../j-k-zhushou/components/jianyi";
 export default {
-  comments: {
+  components: {
     tou,
     ceping,
-    nav,
+    navzs,
     jianyi,
   },
 };
