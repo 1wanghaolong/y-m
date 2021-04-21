@@ -2,12 +2,11 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import Vant from 'vant';
-import 'vant/lib/index.css';
+import * as vant from './components/vant.js'
+//ES6 编译器识别问题 改为import * as vant from './utils/vant'
 import 'amfe-flexible';
-Vue.use(Vant);
 Vue.config.productionTip = false
-
+Vue.prototype.Vant = vant;
 new Vue({
   router,
   store,
