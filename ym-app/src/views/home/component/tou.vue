@@ -14,12 +14,6 @@
 <script>
 export default {
   methods: {
-    onClickLeft() {
-      Toast("返回");
-    },
-    onClickRight() {
-      Toast("按钮");
-    },
   },
 };
 </script>
@@ -32,7 +26,7 @@ export default {
 }
 .van-nav-bar{
   background-color: #5cd0ad;
-   height: 50px;
+   height: 1.35rem;
 }
 </style>
     
