@@ -11,9 +11,21 @@ import steps2 from '../views/home/component/components/testing/Steps2.vue'
 import steps3 from '../views/home/component/components/testing/Steps3.vue'
 import addessxq from '../views/home/component/components/components/addessxq.vue'
 import yuyue from '../views/home/component/components/components/yuyue.vue'
+import login from '../views/login/Login.vue'
+import register from '../views/login/Register.vue'
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/login',
+    name: 'login',
+    component: login,
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: register,
+  },
   {
     path: '/addessxq',
     name: 'addessxq',
