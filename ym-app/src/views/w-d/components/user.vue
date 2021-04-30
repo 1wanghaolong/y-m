@@ -14,7 +14,7 @@
          <van-row>
         <van-col span="8" style="height:110px"> 
             <div class="avatar">
-              <img src="../../../assets/img/xinguan.jpg" alt="" width="100" height="100">
+              <img src="../../../assets/wode/tx.jpg" alt="" width="100" height="100">
             </div>
         </van-col>
         <van-col span="8" class="nickname">

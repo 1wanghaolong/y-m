@@ -3,7 +3,7 @@
     <div class="header">
       <van-nav-bar title="身份信息" class="nav">
         <template #left>
-          <van-icon name="arrow-left" size="20" class="arrow-left"  @click="fh"/>
+          <van-icon name="arrow-left" size="20" class="arrow-left" @click="fh" />
         </template>
 
         <template #right>
@@ -31,46 +31,22 @@
         <li class="step-next">归属部门</li>
       </ul>
     </van-cell-group>
+
     <div class="record">
       <van-cell-group class="group">
-        <van-cell center title="为本人建档" class="cell">
-          <template #right-icon>
+
+         <van-cell center title="为本人建档" class="cell">
+           <template #right-icon> 
             <van-switch v-model="checked" size="24" />
           </template>
-        </van-cell>
-        <van-field
-          v-model="value"
-          label="姓名"
-          placeholder="请输入真实姓名"
-        ></van-field>
-        <van-field label="国籍" value="中国" readonly />
-        <van-field label="证件类型" value="居民身份证" readonly />
-        <van-field
-          v-model="IDcard"
-          label="证件号码"
-          placeholder="请输入18位身份证号码"
-        />
-
-        <!-- <van-cell title="出生日期" :value="date" @click="show = true" /> -->
-
-        <van-field
-          is-link
-          readonly
-          :value="date"
-          label="选择年月日"
-          placeholder="请选择日期"
-          @click="show = true"
-        />
-        <van-field
-          v-model="sex"
-          label="性别"
-          placeholder="请输入性别"
-        />
-        <van-field
-          v-model="phone"
-          label="电话号码"
-          placeholder="请输入手机号码"
-        />
+         </van-cell>
+          <van-cell title="姓名" :value="`${this.data.username}`"/>
+          <van-cell title="国籍" value="中国" style="" />
+          <van-cell title="证件类型" value="居民身份证" />
+          <van-cell title="证件号码" :value="`${this.data.idicator}`" />
+          <van-cell title="出生日期" :value="`${this.data.brithday}`" />
+          <van-cell title="性别" :value="`${this.data.sex==1?'男':'女'}`" />
+          <van-cell title="电话号码" :value="`${this.data.phone}`" />
       </van-cell-group>
     </div>
     <div class="btn">
@@ -85,6 +61,7 @@
 export default {
   data() {
     return {
+      
       phone:'',
       checked: true,
       value: "",
@@ -93,54 +70,32 @@ export default {
       sex: '',
       birthday: "",
       currentDate: new Date(2021, 0, 17),
+      data:{}
     };
   },
   methods: {
+   
     xiabu() {
       this.$router.push("/steps2");
     },
     shang() {
       this.$router.push("/steps1");
     },
-    onConfirm(date) {
-      this.show = false;
-      this.date = this.formatDate(date);
-    },
-    onConfirm(date) {
-      this.value = date
-        .filter((item) => !!item)
-        .map((item) => item.name)
-        .join("/");
-      this.show = false;
-    },
     fh(){
       this.$router.go(-1)
     }
   },
   mounted() {
-    var qs = require("qs");
-    this.axios
-      .post(`/login`, qs.stringify({ username: "于超", password: "123456" }), {
-        headers: { "Content-type": "application/x-www-form-urlencoded" },
-      })
-      .then((res) => {
-        // console.log(res.data);
-        if (res.data.code === 200) {
-          console.log(res.data.result);
-          let  val = res.data.result
-          this.value = val.username
-          this.IDcard = val.idicator
-          this.date = val.brithday
-          this.phone = val.phone
+    let a="pxy";
+    let b="123456";
+    this.axios.get(`/xinxi/${a}&&${b}`).then(res=>{
+       if (res.data.code === 200) {
+          console.log( res.data.result);
+          this.data = res.data.result
+          // console.log(this.data.username);
+       
         }
-      });
-      this.axios
-      .post(`/register`, qs.stringify({ username: "于超2", password: "123456789" }), {
-        headers: { "Content-type": "application/x-www-form-urlencoded" },
-      })
-      .then((res) => {
-        console.log(res.data);
-      });
+    })
   },
 };
 </script>

@@ -3,7 +3,7 @@
     <div class="header">
       <van-nav-bar title="基础信息" class="nav">
         <template #left>
-          <van-icon name="arrow-left" size="20" class="arrow-left" />
+          <van-icon name="arrow-left" size="20" class="arrow-left" @click="fh" />
         </template>
 
         <template #right>
@@ -117,6 +117,9 @@ export default {
     xiabu1() {
       this.$router.push("/yuyue");
     },
+    fh(){
+      this.$router.go(-1)
+    }
   },
   mounted() {
     this.loadmore();

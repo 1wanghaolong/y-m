@@ -33,6 +33,17 @@
         placeholder='请再次输入密码'
         :rules="[{required:true,message:'两次输入的密码不一致'}]"
       />
+      <van-field v-model="sfz" label="身份证号码" placeholder="请输入18位身份证号码" maxlength="18" />
+      <van-field label="出生日期" readonly :is-link="true" @click="show" />
+      
+      <van-field name="radio" label="性别">
+        <template #input>
+          <van-radio-group v-model="radio" direction="horizontal">
+            <van-radio name="1">男</van-radio>
+            <van-radio name="2">女</van-radio>
+          </van-radio-group>
+        </template>
+      </van-field>
       <van-field v-model="phone" name="validator" type="tel" label="手机号" placeholder="请输入手机号码" 
       :rules="[{validator, message: '手机号格式不正确' }]" />
       <van-field
@@ -64,10 +75,16 @@ export default {
       password:'',
       repassword:'',
       phone:"",
-      yzm:""
+      yzm:"",
+      sfz:"",
+      radio:"1",
+      
     }
   },
   methods: {
+    show(){
+      console.log(333);
+    },
     blur(){
       if(this.password==this.repassword){
          //失去焦点
