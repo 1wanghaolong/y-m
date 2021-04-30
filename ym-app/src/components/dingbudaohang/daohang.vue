@@ -2,21 +2,33 @@
   <div class="daohang">
     <van-tabbar
       v-model="active"
-      active-color="#ee0a24"
-      inactive-color="#000"
+      active-color="#5FBEFF"
+      inactive-color="#00ff0"
       @change="onChange"
       route
     >
-      <van-tabbar-item to="/" icon="new-o"> 疫苗</van-tabbar-item>
-      <van-tabbar-item icon="coupon-o" to="/zhushou" @click="gouwuche"
-        >健康助手</van-tabbar-item
-      >
-      <van-tabbar-item icon="orders-o" to="/xinwen" @click="shezhi"
-        >新闻</van-tabbar-item
-      >
-      <van-tabbar-item icon="user-circle-o" to="/wode" @click="shezhi"
-        >我的</van-tabbar-item
-      >
+      <div class="ym">
+        <img src="../../assets/daohang/yimiao.svg" alt="" style="width: 27px" />
+        <van-tabbar-item to="/"> 疫苗</van-tabbar-item>
+      </div>
+      <div class="ym">
+        <img src="../../assets/daohang/tubiaozhizuomoban-.svg" alt="" style="width: 27px" />
+        <van-tabbar-item to="/zhushou" @click="gouwuche"
+          >健康助手</van-tabbar-item
+        >
+      </div>
+      <div class="ym">
+         <img src="../../assets/daohang/xinwen.svg" alt="" style="width: 27px" />
+        <van-tabbar-item  to="/xinwen" @click="shezhi"
+          >新闻</van-tabbar-item
+        >
+      </div>
+      <div class="ym">
+         <img src="../../assets/daohang/wode.svg" alt="" style="width: 27px" />
+        <van-tabbar-item  to="/wode" @click="shezhi"
+          >我的</van-tabbar-item
+        >
+      </div>
     </van-tabbar>
   </div>
 </template>
@@ -37,5 +49,15 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
+.ym {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.van-tabbar--fixed {
+  display: flex;
+  justify-content: space-around;
+}
 </style>

@@ -1,7 +1,51 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2021-04-28 23:03:31
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2021-04-30 01:02:47
+-->
 <template>
   <div class="daohang">
     <div class="daohangkuang">
-      <div v-for="i of 7" :key="i" id="d-hdiv">
+      <div id="icon">
+        <router-link
+          src="img\x-g-img\1.jpg"
+          alt=""
+          tag="img"
+          to=""
+        ></router-link>
+        <span style="margin-top: 0.2rem">疫苗库存</span>
+      </div>
+      <div id="icon">
+        <router-link
+          src="img\x-g-img\2.jpg"
+          alt=""
+          tag="img"
+          to=""
+        ></router-link>
+        <span style="margin-top: 0.2rem">门诊通知</span>
+      </div>
+      <div id="icon">
+        <router-link
+          src="img\x-g-img\3.jpg"
+          alt=""
+          tag="img"
+          to=""
+        ></router-link>
+        <span style="margin-top: 0.2rem">接种咨询</span>
+      </div>
+      <div id="icon">
+        <router-link
+          src="img\x-g-img\4.jpg"
+          alt=""
+          tag="img"
+          to=""
+        ></router-link>
+        <span style="margin-top: 0.2rem">疫苗百科</span>
+      </div>
+      <div id="d-hdiv">
         <router-link tag="img" src="img\x-g-img\x-g.jpg" alt="" to="/xg" />
         <span>疫苗</span>
       </div>
@@ -9,28 +53,68 @@
         <router-link tag="img" src="img\x-g-img\d-a.jpg" alt="" to="/xg" />
         <span>成人档案</span>
       </div>
+      <div id="icon">
+        <router-link
+          src="img\x-g-img\5.jpg"
+          alt=""
+          tag="img"
+          to=""
+        ></router-link>
+        <span style="margin-top: 0.2rem">接种参考</span>
+      </div>
     </div>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {};
+  },
+};
 </script>
 <style lang="stylus" scoped>
+.daohang {
+  width: 100%;
+}
+
 .daohangkuang {
   display: flex;
   flex-wrap: wrap;
+  background-color: #fff;
+  margin: 0 auto;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  border: none;
 }
 
 #d-hdiv {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 0.2rem 0.2rem;
+  margin: 0.3rem;
+}
+
+#icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.3rem;
+  font-size: 0.35rem;
+  font-family: fangsong;
+}
+
+#icon img {
+  height: 1.25rem;
+  width: 1.3rem;
+  background-color: #87cefa;
+  border-radius: 50%;
+  color: #fff;
 }
 
 #d-hdiv img {
   height: 1.25rem;
   width: 1.25rem;
+  border-radius: 50%;
 }
 
 #d-hdiv span {

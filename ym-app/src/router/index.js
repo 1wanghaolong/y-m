@@ -13,9 +13,21 @@ import addessxq from '../views/home/component/components/components/addessxq.vue
 import yuyue from '../views/home/component/components/components/yuyue.vue'
 import login from '../views/login/Login.vue'
 import register from '../views/login/Register.vue'
+import wenben_next from '../views/xinwen/wenben_next.vue'
+import search_next from '../views/xinwen/search_next.vue'
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/search_next',
+    name: 'search_next',
+    component: search_next,
+  },
+  {
+    path: '/wenben_next',
+    name: 'wenben_next',
+    component: wenben_next,
+  },
   {
     path: '/login',
     name: 'login',

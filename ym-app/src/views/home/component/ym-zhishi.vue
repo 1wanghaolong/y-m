@@ -3,27 +3,59 @@
     <div class="zs-nei">
       <p>接种知识</p>
     </div>
-    <div class="item" v-for="i of 8" :key="i">
+    <div class="item" v-for="(v, i) of list" :key="i">
       <div class="title">
         <div class="title-xq">
           <span id="z-j">专家审核</span>
-          <span class="xq"> 这个死亡率100%的传染病，夏天有开始活跃了</span>
+          <span class="xq"> {{ v.title }}</span>
         </div>
         <span class="f-w">17.4万家长读过</span>
       </div>
       <div class="img">
-        <img
-          src="https://gw.alicdn.com/tfs/TB1OIxTcLc3T1VjSZLeXXbZsVXa-183-144.png?getAvatar=1"
-          alt=""
-        />
+        <img :src="v.img" alt="" />
       </div>
+    </div>
+    <div class="jz">
+      <span @click="jz"> 加载更多</span>
     </div>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      list: [],
+    };
+  },
+  methods: {
+    jz() {
+      this.$router.push("/xinwen");
+    },
+  },
+  mounted() {
+    this.axios.get("/shouye").then((res) => {
+      console.log(res.data.result);
+      this.list = res.data.result;
+    });
+  },
+};
 </script>
 <style scoped>
+.jz span {
+  width: 30%;
+  height: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  margin-top: 20px;
+}
+.jz {
+  width: 100%;
+  height: 3.5rem;
+  justify-content: center;
+  display: flex;
+}
 .y-m-zhishi {
   width: 100%;
   margin-top: 0.54rem;
@@ -37,9 +69,9 @@ export default {};
 .item {
   margin-left: 0.2rem;
   height: 4.05rem;
-  margin-top: 0.54rem;
   display: flex;
-  justify-content: space-between;
+  margin-top: 0.4rem;
+  border-bottom: 1px dashed gray;
 }
 .title {
   font-size: 0.32rem;
@@ -47,15 +79,14 @@ export default {};
   flex-direction: column;
   justify-content: space-between;
   height: 2.7rem;
-  margin-top: 0.54rem;
   width: 5.4rem;
 }
 .title-xq {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 .title-xq #z-j {
-  margin-top: 0.54rem;
   background-color: #f1f1fd;
   width: 1.4rem;
   height: 0.54rem;
@@ -66,10 +97,12 @@ export default {};
 }
 .xq {
   font-weight: bold;
+  width: 100%;
+  margin-top: 15px;
 }
 .img img {
-  width: 100%;
-  height: 4.05rem;
+  width: 4.16rem;
+  height: 2.7rem;
 }
 .f-w {
   color: #9f9f9f;

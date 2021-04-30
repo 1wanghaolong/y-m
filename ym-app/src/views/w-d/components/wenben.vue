@@ -8,19 +8,37 @@
 -->
 <template>
     <div class="wenben">
-        <van-grid >
-            <van-grid-item icon="photo-o" text="我的消息" dot />
-            <van-grid-item icon="photo-o" text="我的订单" />
-            <van-grid-item icon="photo-o" text="我的豆豆" />
-            <van-grid-item icon="photo-o" text="我的预约" badge="10+" />
-        </van-grid>
-        <div id="d3">
-            我的宝宝
+       <!-- 左对齐 -->
+        <div class="nav_van">
+            <van-row type="flex" class="nav_item">
+                <van-col span="6" >
+                    <img src="../../../assets/icon_svg/dibudaohanglan-.png" alt=""  style=" width:30px; height:30px" class="news"> 
+                    <p>我的消息</p>
+                </van-col>
+                <van-col span="6">
+                    <img src="../../../assets/icon_svg/dingdan.png" alt=""  style=" width:30px; height:30px" class="news">
+                    <p>我的订单</p>
+                </van-col>
+                <van-col span="6">
+                    <img src="../../../assets/icon_svg/douzi.png" alt=""  style=" width:30px; height:30px" class="news">
+                    <p>我的豆豆</p>
+                </van-col>
+                <van-col span="6">
+                    <img src="../../../assets/icon_svg/yuyuexinxi.png" alt=""  style=" width:30px; height:30px" class="news">
+                    <p>我的预约</p>
+                </van-col>
+            </van-row>
         </div>
-        <van-field label="我的收藏" right-icon="arrow" readonly />
-        <van-field label="帮助中心" right-icon="arrow" readonly />
-        <van-field label="建议反馈" right-icon="arrow" readonly />
-        <img src="../../../assets/xwen/cyq.jpg" alt="" class="img2">
+        <div class="line"></div>
+        <div class="xinguan">
+            <img src="../../../assets/img/xinguan.jpg" alt="" width="100%" style="    height: 5rem;">
+        </div>
+        <div class="floor">
+            <van-field label="我的收藏" right-icon="arrow" readonly />
+            <van-field label="帮助中心" right-icon="arrow" readonly />
+            <van-field label="建议反馈" right-icon="arrow" readonly />
+        </div>
+        <!-- <img src="../../../assets/xwen/cyq.jpg" alt="" class="img2" width="100%"> -->
     </div>
 
 </template>
@@ -30,13 +48,33 @@ export default {
 }
 </script>
 <style scoped>
-    #d3{
-    width: 100%;
-    height: 120px;
-    text-align: left;
-    background-color: ghostwhite;
+    .wenben{
+        margin-top: 10px;
     }
-    .img2{
-    width: 100%;
+    .nav_item{
+        align-items: center;
     }
+   .news{
+       margin-left: 30px;
+   }
+    .line{
+       
+        width: 95%;
+        margin: 0 auto;
+        height: 20px;
+        border-bottom: 1px solid rgba(194, 191, 191, 0.2);
+        
+    }
+    p{
+       margin-top: 5px;
+       text-align: center;
+   }
+   .xinguan{
+    
+       margin-top: 10px;
+   }
+   .floor{
+       margin-top: 30px;
+   }
+   
 </style>

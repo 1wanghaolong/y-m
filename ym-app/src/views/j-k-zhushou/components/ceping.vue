@@ -4,7 +4,7 @@
       <div class="ceping_chacarar"><span>发育测评</span></div>
       <div class="ceping_click">
         <div class="ceping_click1">
-          <p>行为发育测评</p>
+          <p style="color: ivory;">行为发育测评</p>
           <van-button type="warning" class="btn_1">去测评</van-button>
         </div>
         <div class="ceping_click2">
@@ -12,7 +12,7 @@
           <van-button type="primary" class="btn_2">去测评</van-button>
         </div>
         <div class="ceping_click3">
-          <p>睡眠测评</p>
+          <p style="color: ivory;">睡眠测评</p>
           <van-button type="info" class="btn_3">去测评</van-button>
         </div>
         <div class="ceping_click4">
@@ -50,9 +50,11 @@ export default {
     text-align: center;
     font-size: 0.43rem;
     font-weight: bold;
+    /* background: url(/images/12.jpg);
+    background-size:cover; */
   }
   .btn_1{
-    border-radius: 20%;
+    border-radius: 20px;
     width: 2.7rem;
     height:0.81rem;
   }
@@ -69,9 +71,11 @@ export default {
     font-size: 0.43rem;
     font-weight: bold;
     line-height: 1rem;
+    /* background: url(/images/13.jpg);
+    background-size:cover; */
   }
   .btn_2{
-    border-radius: 20%;
+    border-radius: 20px;
     width: 2.7rem;
     height: 0.81rem;
   }
@@ -87,9 +91,11 @@ export default {
     line-height: 1rem;
     font-size: .43rem;
     font-weight: bold;
+    /* background: url(/images/14.jpg);
+    background-size:cover; */
   }
   .btn_3{
-    border-radius: 20%;
+    border-radius: 20px;
     width: 2.7rem;
     height: 0.81rem;
   }
@@ -104,6 +110,8 @@ export default {
     text-align: center;
     font-size: 0.43rem;
     font-weight:bold;
+    /* background: url(/images/15.jpg);
+    background-size:cover; */
   }
   .p1{
    padding-top: 0.54rem;

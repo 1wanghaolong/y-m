@@ -3,7 +3,7 @@
     <div class="header">
       <van-nav-bar title="身份信息" class="nav">
         <template #left>
-          <van-icon name="arrow-left" size="20" class="arrow-left" />
+          <van-icon name="arrow-left" size="20" class="arrow-left"  @click="fh"/>
         </template>
 
         <template #right>
@@ -33,39 +33,44 @@
     </van-cell-group>
     <div class="record">
       <van-cell-group class="group">
-
-         <van-cell center title="为本人建档" class="cell">
-           <template #right-icon>
+        <van-cell center title="为本人建档" class="cell">
+          <template #right-icon>
             <van-switch v-model="checked" size="24" />
           </template>
-         </van-cell>
-          <van-field v-model="value" label="姓名" placeholder="请输入真实姓名"></van-field>
-          <van-field label="国籍" value="中国" readonly/>
-          <van-field label="证件类型" value="居民身份证" readonly />
-          <van-field v-model="IDcard" label="证件号码" placeholder="请输入18位身份证号码" />
+        </van-cell>
+        <van-field
+          v-model="value"
+          label="姓名"
+          placeholder="请输入真实姓名"
+        ></van-field>
+        <van-field label="国籍" value="中国" readonly />
+        <van-field label="证件类型" value="居民身份证" readonly />
+        <van-field
+          v-model="IDcard"
+          label="证件号码"
+          placeholder="请输入18位身份证号码"
+        />
 
-          <!-- <van-cell title="出生日期" :value="date" @click="show = true" /> -->
-         
-          <van-field
-              is-link
-              readonly
-              :value="date"
-              label="选择年月日"
-              placeholder="请选择日期"
-              @click="show = true"
-            />
-            <van-popup v-model="show" round position="bottom">
-              <van-datetime-picker
-                v-model="currentDate"
-                type="date"
-                @confirm="onConfirm"
-                @cancel="show = false"
-              />
-            </van-popup>
-            <van-cell is-link title="性别" @click="show2 = true" />
-            <van-action-sheet v-model="show2" :actions="actions" />
-             <van-field v-model="value" label="电话号码" placeholder="请输入手机号码" />
+        <!-- <van-cell title="出生日期" :value="date" @click="show = true" /> -->
 
+        <van-field
+          is-link
+          readonly
+          :value="date"
+          label="选择年月日"
+          placeholder="请选择日期"
+          @click="show = true"
+        />
+        <van-field
+          v-model="sex"
+          label="性别"
+          placeholder="请输入性别"
+        />
+        <van-field
+          v-model="phone"
+          label="电话号码"
+          placeholder="请输入手机号码"
+        />
       </van-cell-group>
     </div>
     <div class="btn">
@@ -80,35 +85,62 @@
 export default {
   data() {
     return {
-     checked: true,
-     value:'',
-     IDcard:'',
-     date:'',
-     show:false,
-     birthday:'',
-     currentDate: new Date(2021, 0, 17),
-    show2:false,
-      actions:[{name:'男'},{name:'女'}]
+      phone:'',
+      checked: true,
+      value: "",
+      IDcard: "",
+      date: "",
+      sex: '',
+      birthday: "",
+      currentDate: new Date(2021, 0, 17),
     };
   },
   methods: {
     xiabu() {
       this.$router.push("/steps2");
     },
-     shang() {
-       this.$router.push("/steps1");
-     },
-     onConfirm(date) {
+    shang() {
+      this.$router.push("/steps1");
+    },
+    onConfirm(date) {
       this.show = false;
       this.date = this.formatDate(date);
     },
-     onConfirm(date) {
+    onConfirm(date) {
       this.value = date
         .filter((item) => !!item)
         .map((item) => item.name)
-        .join('/');
-        this.show = false;
+        .join("/");
+      this.show = false;
     },
+    fh(){
+      this.$router.go(-1)
+    }
+  },
+  mounted() {
+    var qs = require("qs");
+    this.axios
+      .post(`/login`, qs.stringify({ username: "于超", password: "123456" }), {
+        headers: { "Content-type": "application/x-www-form-urlencoded" },
+      })
+      .then((res) => {
+        // console.log(res.data);
+        if (res.data.code === 200) {
+          console.log(res.data.result);
+          let  val = res.data.result
+          this.value = val.username
+          this.IDcard = val.idicator
+          this.date = val.brithday
+          this.phone = val.phone
+        }
+      });
+      this.axios
+      .post(`/register`, qs.stringify({ username: "于超2", password: "123456789" }), {
+        headers: { "Content-type": "application/x-www-form-urlencoded" },
+      })
+      .then((res) => {
+        console.log(res.data);
+      });
   },
 };
 </script>
@@ -171,9 +203,6 @@ button {
   border-left: 15px solid transparent;
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
-}
-.arrow-next {
-  /* margin-left: -15px; */
 }
 .arrow-past .arrow-pre {
   border-left: 15px solid #9cddf5;

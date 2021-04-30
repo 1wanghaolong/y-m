@@ -1,10 +1,15 @@
 <template>
   <div class="xinwen">
-    <search></search>
-    <wenben></wenben>
-    <navs></navs>
-    <neirong></neirong>
-    <dibudaohang></dibudaohang>
+    <search style="position:fixed;z-index:1;width:100%;"></search>
+    <div v-infinite-scroll="loadmore"
+    infinite-scroll-disabled="loading"
+    infinite-scroll-distance="10" 
+    >
+      <wenben></wenben>
+      <navs></navs>
+      <neirong></neirong>
+      <dibudaohang></dibudaohang>
+    </div>
   </div>
 </template>
 <script>
@@ -19,8 +24,21 @@ export default {
     wenben,
     navs,
     neirong,
-    dibudaohang,
+    dibudaohang
   },
+  data(){
+    return {
+      loading:false
+    }
+  },
+  methods:{
+    loadmore(){
+      this.loading=true
+    }
+  },
+  mounted(){
+    this.loadmore();
+  }
 };
 </script>
 <style scoped>

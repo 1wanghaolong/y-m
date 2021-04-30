@@ -27,14 +27,15 @@
             <span class="arrow-next"></span>
           </span>
         </li>
-        <li class="step-next" style="background-color: #4461a5">归属部门</li>
+        <li class="step-next" style="background-color: #4461a5">归属门诊</li>
       </ul>
     </van-cell-group>
 
     <div class="header_search">
-      <van-dropdown-menu style="width: 30%" class="dingwei">
-        <van-dropdown-item v-model="value1" :options="option1" />
-      </van-dropdown-menu>
+      <div class="header_addess">
+        <van-icon name="location-o"  class="dz" size="12"/>
+        <span>{{ this.dizhi }}</span>
+      </div>
 
       <van-search placeholder="请输入搜索关键词" class="search" />
     </div>
@@ -88,19 +89,15 @@
     </div>
   </div>
 </template>
-
 <script>
+import { mapState } from "vuex";
 export default {
   data() {
     return {
       loading: false,
       value1: 0,
       value2: "a",
-      option1: [
-        { text: "全部商品", value: 0 },
-        { text: "新款商品", value: 1 },
-        { text: "活动商品", value: 2 },
-      ],
+      option1: [{ text: this.dizhi, value: 0 }],
       yuyue: [
         {
           head: "爱上覅u啊哈佛神佛哈桑佛啊是佛i嫩肤你健脑哦啊接送i家啊大家",
@@ -115,6 +112,7 @@ export default {
   methods: {
     loadmore() {
       this.loading = true;
+      console.log(this.dizhi);
     },
     xiabu1() {
       this.$router.push("/yuyue");
@@ -123,10 +121,24 @@ export default {
   mounted() {
     this.loadmore();
   },
+  computed: {
+    ...mapState(["dizhi"]),
+  },
 };
 </script>
 
 <style>
+.dz {
+  margin-left: -12px;
+}
+
+.header_addess {
+  width: 20%;
+  position: absolute;
+  top: 16px;
+  left: 21px;
+  font-size: 15px;
+}
 .btn {
   text-align: center;
   margin-top: 200px;
@@ -258,7 +270,7 @@ button {
   box-shadow: none;
 }
 .search {
-  width: 70%;
+  width: 80%;
   position: absolute;
   right: 0;
   top: 0px;

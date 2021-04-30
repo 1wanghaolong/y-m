@@ -1,6 +1,9 @@
 <template>
   <div class="tou">
-    <van-nav-bar title="首页">
+    <van-nav-bar>
+      <template #title>
+        <span style="color: #fff;">首页</span>
+      </template>
       <template #left>
         <span id="dz">地址</span>
       </template>
@@ -26,12 +29,13 @@ export default {
 <style scoped>
 .tou {
   width: 100%;
+  color: #fff;
 }
 #dl {
   margin-right: 0.2rem;
 }
 .van-nav-bar {
-  background-color: #5cd0ad;
+  background-color: #5dc9af;
   height: 1.35rem;
 }
 </style>

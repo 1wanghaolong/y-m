@@ -8,19 +8,23 @@
 -->
 <template>
     <div class="user">
-        <div id="d2">
-      <van-skeleton avatar title :row="2" avatar-size="64px" :loading="loading">
-          <img src="../../../assets/xwen/cyq.jpg" class="img1">
-        <div>  
-          <div id="d1">
-            <span>用户昵称</span>
-          </div>
-          <div>
-            <span>用户账号</span>
-          </div>
-        </div>
-      </van-skeleton>
-    </div>
+       
+         
+
+         <van-row>
+        <van-col span="8" style="height:110px"> 
+            <div class="avatar">
+              <img src="../../../assets/img/xinguan.jpg" alt="" width="100" height="100">
+            </div>
+        </van-col>
+        <van-col span="8" class="nickname">
+          <h2>小豆丁</h2>
+           <h5>ID账号：</h5>
+        </van-col>
+        <!-- <van-col span="8" class="homepage">个人主页<span class="icon_arrow"> > </span> </van-col> -->
+      </van-row>
+        
+          
     </div>
 </template>
 <script>
@@ -36,12 +40,43 @@ export default {
 }
 </script>
 <style scoped>
-    #d1,#d2{
-    display: flex;
+   
+    .avatar{
+      
+      width: 100px;
+      height: 100px;
+      /* background-color: brown; */
+      border-radius: 50%; 
+      margin-left: 20px;
+      
     }
-    .img1{
-    width:60px;height: 60px;
-    border-radius: 50%;
-    padding-left: 20px;
+    .avatar img{
+      padding-top:6px;
+      border-radius: 50%; 
     }
+    .nickname>h2{
+        position: absolute;
+        left: 140px;
+        top: 70px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+    .nickname>h5{
+        position: absolute;
+        left: 140px;
+        top: 110px;
+        font-size: 14px;
+        
+    }
+    .homepage{
+      position: absolute;
+      left: 280px;
+      top: 100px;
+      transform: translateY(-50%);
+      font-size: 16px;
+    }
+    .icon_arrow{
+     font-size: 18px;
+     margin-top: 10px;
+   }
 </style>
