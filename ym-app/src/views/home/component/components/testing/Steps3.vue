@@ -3,7 +3,12 @@
     <div class="header">
       <van-nav-bar title="基础信息" class="nav">
         <template #left>
-          <van-icon name="arrow-left" size="20" class="arrow-left" @click="fh" />
+          <van-icon
+            name="arrow-left"
+            size="20"
+            class="arrow-left"
+            @click="fh"
+          />
         </template>
 
         <template #right>
@@ -33,17 +38,17 @@
 
     <div class="header_search">
       <div class="header_addess">
-        <van-icon name="location-o"  class="dz" size="12"/>
-        <span>{{ this.dizhi }}</span>
+        <van-icon name="location-o" class="dz" size="12" />
+        <span>{{ this.dizhi || dizhi2 }}</span>
       </div>
 
       <van-search placeholder="请输入搜索关键词" class="search" />
     </div>
 
     <div style="position: relative; top: 40px">
-      <router-link
-        to="#"
+      <div
         v-for="(item, i) in yuyue"
+        @click="insurance(i)"
         :key="i"
         style="
           display: block;
@@ -52,7 +57,7 @@
           color: black;
         "
       >
-        <p style="margin-bottom: 8px; font-weight: 500">{{ item.head }}</p>
+        <p style="margin-bottom: 8px; font-weight: 500">{{ item.hcaddress }}</p>
         <div
           style="
             margin-bottom: 8px;
@@ -60,13 +65,13 @@
             justify-content: space-between;
           "
         >
-          <span style="color: #aaa; font-size: 12px">{{ item.adress }}</span
-          ><span>{{ item.juli }}</span>
+          <span style="color: #aaa; font-size: 12px">{{ item.hcinfor }}</span
+          ><span>{{ item.vaccincount }}km</span>
         </div>
-        <p style="margin-bottom: 15px">{{ item.data }}</p>
+        <p style="margin-bottom: 15px">{{ item.hctime }}</p>
         <div style="display: flex; justify-content: space-between">
           <span style="color: #fbc"
-            >剩余源号：<span>{{ item.num }}</span></span
+            >剩余源号：<span>{{ item.vaccincoutnow }}</span></span
           ><button
             style="
               font-size: 12px;
@@ -78,11 +83,13 @@
             选择门诊
           </button>
         </div>
-      </router-link>
+      </div>
     </div>
 
     <div class="btn">
-      <van-button type="default" class="btn1">上一步</van-button>
+      <van-button type="default" class="btn1" @click="shangbu"
+        >上一步</van-button
+      >
       <van-button type="default" class="btn2" @click="xiabu1"
         >下一步</van-button
       >
@@ -90,39 +97,46 @@
   </div>
 </template>
 <script>
+import { yiyuanaccess } from "../../../../../components/axiosAPI";
 import { mapState } from "vuex";
 export default {
   data() {
     return {
+      dizhi2: localStorage.getItem("dizhi"),
       loading: false,
       value1: 0,
       value2: "a",
       option1: [{ text: this.dizhi, value: 0 }],
-      yuyue: [
-        {
-          head: "爱上覅u啊哈佛神佛哈桑佛啊是佛i嫩肤你健脑哦啊接送i家啊大家",
-          adress: "涉江省杭州市",
-          juli: "1.1km",
-          data: "每周四上午|08:00-1200",
-          num: 0,
-        },
-      ],
+      yuyue: [],
     };
   },
   methods: {
     loadmore() {
       this.loading = true;
-      console.log(this.dizhi);
     },
     xiabu1() {
       this.$router.push("/yuyue");
     },
-    fh(){
-      this.$router.go(-1)
-    }
+    fh() {
+      this.$router.go(-1);
+    },
+    shangbu() {
+      this.$router.go(-1);
+    },
+    insurance(id) {
+      this.$router.push({
+        path: `/addessxq/${id}`,
+      });
+    },
   },
   mounted() {
     this.loadmore();
+    yiyuanaccess(localStorage.getItem("dizhi")).then((res) => {
+      this.yuyue = res.data.result;
+      console.log(this.yuyue);
+      let yuyuexq = JSON.stringify(this.yuyue);
+      sessionStorage.setItem("yuyuexq", yuyuexq);
+    });
   },
   computed: {
     ...mapState(["dizhi"]),
@@ -144,7 +158,7 @@ export default {
 }
 .btn {
   text-align: center;
-  margin-top: 200px;
+  margin-top: 1.5rem;
 }
 .btn .btn1 {
   width: 150px;

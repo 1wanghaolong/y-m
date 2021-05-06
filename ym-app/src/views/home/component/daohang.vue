@@ -4,7 +4,7 @@
  * @Author: sueRimn
  * @Date: 2021-04-28 23:03:31
  * @LastEditors: sueRimn
- * @LastEditTime: 2021-04-30 01:02:47
+ * @LastEditTime: 2021-05-04 14:10:10
 -->
 <template>
   <div class="daohang">
@@ -32,7 +32,7 @@
           src="img\x-g-img\3.jpg"
           alt=""
           tag="img"
-          to=""
+          to="/jiezhongzixun"
         ></router-link>
         <span style="margin-top: 0.2rem">接种咨询</span>
       </div>
@@ -47,7 +47,7 @@
       </div>
       <div id="d-hdiv">
         <router-link tag="img" src="img\x-g-img\x-g.jpg" alt="" to="/xg" />
-        <span>疫苗</span>
+        <span>新冠预约</span>
       </div>
       <div id="d-hdiv">
         <router-link tag="img" src="img\x-g-img\d-a.jpg" alt="" to="/xg" />
@@ -58,7 +58,7 @@
           src="img\x-g-img\5.jpg"
           alt=""
           tag="img"
-          to=""
+          to="/jiezhongcankao"
         ></router-link>
         <span style="margin-top: 0.2rem">接种参考</span>
       </div>
@@ -100,7 +100,7 @@ export default {
   align-items: center;
   margin: 0.3rem;
   font-size: 0.35rem;
-  font-family: fangsong;
+   color: rgb(102, 102, 102);
 }
 
 #icon img {
@@ -122,7 +122,6 @@ export default {
   color: rgb(102, 102, 102);
   margin-top: 0.02rem;
   font-size: 0.35rem;
-  font-family: fangsong;
 }
 </style>
 

@@ -3,7 +3,12 @@
     <div class="header">
       <van-nav-bar title="基础信息" class="nav">
         <template #left>
-          <van-icon name="arrow-left" size="20" class="arrow-left"  @click="fh"/>
+          <van-icon
+            name="arrow-left"
+            size="20"
+            class="arrow-left"
+            @click="fh"
+          />
         </template>
 
         <template #right>
@@ -61,12 +66,12 @@
       <van-cell-group class="group">
         <van-cell center title="现居住地址" class="cell"></van-cell>
         <van-field
-          v-model="fieldValue"
+          v-model="fieldValue2"
           is-link
           readonly
           label="现居住地区"
           placeholder="点击选择现居住地区"
-          @click="show = true"
+          @click="show2 = true"
         />
         <van-popup v-model="show" round position="bottom">
           <van-cascader
@@ -105,7 +110,6 @@
       </van-radio-group>
     </div>
     <div class="btn">
-      <van-button type="default" class="btn1">上一步</van-button>
       <van-button type="default" class="btn2 active" @click="xiabu"
         >下一步</van-button
       >
@@ -117,7 +121,9 @@ export default {
   data() {
     return {
       show: false,
-      fieldValue: "",
+      show2: false,
+      fieldValue: "" || sessionStorage.getItem("dizhi2"),
+      fieldValue2: "",
       cascaderValue: "",
       radio: "1",
       value: "",
@@ -156,29 +162,29 @@ export default {
   },
   methods: {
     // 全部选项选择完毕后，会触发 finish 事件
-    onFinish({ selectedOptions }) {
+    onFinish({ selectedOptions, tabIndex }) {
+      // console.log(selectedOptions, tabIndex);
       this.show = false;
       this.fieldValue = selectedOptions.map((option) => option.text).join("/");
+      // console.log(this.fieldValue);
+      sessionStorage.setItem("dizhi2", this.fieldValue);
     },
     onChange(value) {
-      console.log(value);
+      // console.log(value.selectedOptions);
       let a = value.selectedOptions[value.tabIndex].text;
-      console.log(a);
       this.d = a;
-      console.log(this.d);
+      localStorage.setItem("dizhi", this.d);
     },
     xiabu() {
       this.$router.push("/steps3");
-      const dz = this.d
-      console.log(dz);
-      this.$store.commit('setTest',`${dz}`)
+      const dz = this.d;
+      this.$store.commit("setTest", `${dz}`);
     },
-    fh(){
-      this.$router.go(-1)
-    }
+    fh() {
+      this.$router.go(-1);
+    },
   },
-  computed:{
-  },
+  computed: {},
   mounted() {
     // this.$axios.get("/articles")
     // .then(res => {

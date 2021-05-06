@@ -1,11 +1,16 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2021-05-02 21:57:16
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2021-05-04 14:10:45
+-->
 <template>
   <div class="tou">
     <van-nav-bar>
       <template #title>
         <span style="color: #fff;">首页</span>
-      </template>
-      <template #left>
-        <span id="dz">地址</span>
       </template>
       <template #right>
         <span id="dl" @click="dl">登录</span>

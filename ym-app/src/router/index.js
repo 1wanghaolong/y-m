@@ -15,9 +15,27 @@ import login from '../views/login/Login.vue'
 import register from '../views/login/Register.vue'
 import wenben_next from '../views/xinwen/wenben_next.vue'
 import search_next from '../views/xinwen/search_next.vue'
+import jiezhongcankao from '../views/home/component/components/jz-cankao/jiezhong.vue'
+import jiezhongzixun from '../views/home/component/components/jz-zixun/zixun-shouye.vue'
+import xq from '../components/xiangqing.vue'
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/xq',
+    name: 'xq',
+    component:xq,
+  },
+  {
+    path: '/jiezhongzixun',
+    name: 'jiezhongzixun',
+    component: jiezhongzixun,
+  },
+  {
+    path: '/jiezhongcankao',
+    name: 'jiezhongcankao',
+    component: jiezhongcankao,
+  },
   {
     path: '/search_next',
     name: 'search_next',
@@ -39,7 +57,7 @@ const routes = [
     component: register,
   },
   {
-    path: '/addessxq',
+    path: "/addessxq/:id",
     name: 'addessxq',
     component: addessxq,
   },

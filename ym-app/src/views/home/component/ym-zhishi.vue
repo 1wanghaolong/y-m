@@ -3,7 +3,7 @@
     <div class="zs-nei">
       <p>接种知识</p>
     </div>
-    <div class="item" v-for="(v, i) of list" :key="i">
+    <div class="item" v-for="(v, i) of list" :key="i" @click="dianji">
       <div class="title">
         <div class="title-xq">
           <span id="z-j">专家审核</span>
@@ -31,6 +31,9 @@ export default {
     jz() {
       this.$router.push("/xinwen");
     },
+    dianji(){
+      this.$router.push("/xq");
+    }
   },
   mounted() {
     this.axios.get("/shouye").then((res) => {

@@ -3,7 +3,12 @@
     <div class="header">
       <van-nav-bar title="身份信息" class="nav">
         <template #left>
-          <van-icon name="arrow-left" size="20" class="arrow-left" @click="fh" />
+          <van-icon
+            name="arrow-left"
+            size="20"
+            class="arrow-left"
+            @click="fh"
+          />
         </template>
 
         <template #right>
@@ -34,23 +39,21 @@
 
     <div class="record">
       <van-cell-group class="group">
-
-         <van-cell center title="为本人建档" class="cell">
-           <template #right-icon> 
-            <van-switch v-model="checked" size="24" />
+        <van-cell center title="为本人建档" class="cell">
+          <template #right-icon>
+            <van-switch v-model="checked" size="24"  disabled />
           </template>
-         </van-cell>
-          <van-cell title="姓名" :value="`${this.data.username}`"/>
-          <van-cell title="国籍" value="中国" style="" />
-          <van-cell title="证件类型" value="居民身份证" />
-          <van-cell title="证件号码" :value="`${this.data.idicator}`" />
-          <van-cell title="出生日期" :value="`${this.data.brithday}`" />
-          <van-cell title="性别" :value="`${this.data.sex==1?'男':'女'}`" />
-          <van-cell title="电话号码" :value="`${this.data.phone}`" />
+        </van-cell>
+        <van-cell title="姓名" :value="`${this.data.username}`" />
+        <van-cell title="国籍" value="中国" style="" />
+        <van-cell title="证件类型" value="居民身份证" />
+        <van-cell title="证件号码" :value="`${this.data.idicator}`" />
+        <van-cell title="出生日期" :value="`${this.data.brithday}`" />
+        <van-cell title="性别" :value="`${this.data.sex == 1 ? '男' : '女'}`" />
+        <van-cell title="电话号码" :value="`${this.data.phone}`" />
       </van-cell-group>
     </div>
     <div class="btn">
-      <van-button type="default" class="btn1" @click="shang">上一步</van-button>
       <van-button type="default" class="btn2 active" @click="xiabu"
         >下一步</van-button
       >
@@ -61,41 +64,38 @@
 export default {
   data() {
     return {
-      
-      phone:'',
+      phone: "",
       checked: true,
       value: "",
       IDcard: "",
       date: "",
-      sex: '',
+      sex: "",
       birthday: "",
       currentDate: new Date(2021, 0, 17),
-      data:{}
+      data: {},
     };
   },
   methods: {
-   
     xiabu() {
       this.$router.push("/steps2");
     },
     shang() {
       this.$router.push("/steps1");
     },
-    fh(){
-      this.$router.go(-1)
+    fh() {
+      this.$router.go(-1);
     }
   },
   mounted() {
-    let a="pxy";
-    let b="123456";
-    this.axios.get(`/xinxi/${a}&&${b}`).then(res=>{
-       if (res.data.code === 200) {
-          console.log( res.data.result);
-          this.data = res.data.result
-          // console.log(this.data.username);
-       
-        }
-    })
+    let a = "pxy";
+    let b = "123456";
+    this.axios.get(`/xinxi/${a}&&${b}`).then((res) => {
+      if (res.data.code === 200) {
+        console.log(res.data.result);
+        this.data = res.data.result;
+        // console.log(this.data.username);
+      }
+    });
   },
 };
 </script>

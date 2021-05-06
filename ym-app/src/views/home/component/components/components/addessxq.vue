@@ -4,13 +4,13 @@
  * @Author: sueRimn
  * @Date: 2021-04-24 15:23:55
  * @LastEditors: sueRimn
- * @LastEditTime: 2021-04-24 18:18:45
+ * @LastEditTime: 2021-05-05 16:27:19
 -->
 <template>
   <div class="addessxq">
     <van-nav-bar title="现管理门诊" left-arrow @click-left="onClickLeft">
       <template #right>
-        <van-icon name="ellipsis" @click="showShare = true"/>
+        <van-icon name="ellipsis" @click="showShare = true" />
         <van-share-sheet
           v-model="showShare"
           title="立即分享给好友"
@@ -22,14 +22,16 @@
     <div class="x-q">
       <div class="x-q-title">
         <p>
-          杭州市西湖区文新街道社区卫生服务中心（4月18日可预约的疫苗厂家为北京生物，预约第二针次居民注意厂家是否一致并与第一针间隔满28天）
+          {{
+            this.xq[this.id].hcinfor
+          }}（4月18日可预约的疫苗厂家为北京生物，预约第二针次居民注意厂家是否一致并与第一针间隔满28天）
         </p>
       </div>
       <div class="x-q-dizhi">
         <div class="dizhi-xx">
           <van-icon name="location-o" />
           <div class="xx-span">
-            浙江省杭州市西湖区翠苑街道唐庙街8号旁翠苑街道综合文化站 二楼
+            {{ this.xq[this.id].hcaddress }}
           </div>
         </div>
         <div class="dizhi-button">复制地址</div>
@@ -44,7 +46,7 @@
       <div class="x-q-dizhi">
         <div class="dizhi-xx">
           <van-icon name="clock-o" />
-          <div class="xx-span">每周四|上午08:00-12:00</div>
+          <div class="xx-span">{{ this.xq[this.id].hctime }}</div>
         </div>
       </div>
     </div>
@@ -57,9 +59,9 @@
           <div class="title-left">节假日</div>
           <div class="title-right">门诊休息日期</div>
         </div>
-        <div class="from-title" v-for="i of 3" :key="i">
-          <div class="title-left1">自定义</div>
-          <div class="title-right1">2021-04-16~2021-04-30</div>
+        <div class="from-title" v-for="(item,key) of data" :key="key">
+          <div class="title-left1">{{ item.riqi }}</div>
+          <div class="title-right1">{{ item.data }}</div>
         </div>
       </div>
     </div>
@@ -70,6 +72,20 @@ export default {
   data() {
     return {
       showShare: false,
+      data: [
+        {
+          riqi: "自定义",
+          data: "2021-04-16~2021-04-30",
+        },
+        {
+          riqi: "国庆节",
+          data: "2021-10-01~2021-10-07",
+        },
+        {
+          riqi: "劳动节",
+          data: "2021-05-01~2021-05-05",
+        },
+      ],
       options: [
         { name: "微信", icon: "wechat" },
         { name: "微博", icon: "weibo" },
@@ -77,6 +93,8 @@ export default {
         { name: "分享海报", icon: "poster" },
         { name: "二维码", icon: "qrcode" },
       ],
+      id: this.$route.params.id,
+      xq: JSON.parse(sessionStorage.getItem("yuyuexq")),
     };
   },
   methods: {
@@ -87,6 +105,9 @@ export default {
       console.log(option);
       this.showShare = false;
     },
+  },
+  mounted() {
+    console.log(this.xq[this.id]);
   },
 };
 </script>
