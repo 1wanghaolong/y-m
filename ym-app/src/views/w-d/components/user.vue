@@ -4,7 +4,7 @@
  * @Author: sueRimn
  * @Date: 2021-04-24 16:15:25
  * @LastEditors: sueRimn
- * @LastEditTime: 2021-04-24 16:19:35
+ * @LastEditTime: 2021-05-06 23:26:26
 -->
 <template>
     <div class="user">
@@ -18,7 +18,7 @@
             </div>
         </van-col>
         <van-col span="8" class="nickname">
-          <h2>小豆丁</h2>
+          <h2>{{username.username}}</h2>
            <h5>ID账号：</h5>
         </van-col>
         <!-- <van-col span="8" class="homepage">个人主页<span class="icon_arrow"> > </span> </van-col> -->
@@ -31,11 +31,13 @@
 export default {
     data(){
         return{
-            loading:true
+            loading:true,
+            username: JSON.parse(sessionStorage.getItem('info')) 
         }
     },
     mounted() {
     this.loading = false;
+    console.log(this.username);
     },
 }
 </script>

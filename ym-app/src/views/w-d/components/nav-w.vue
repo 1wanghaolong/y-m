@@ -10,7 +10,7 @@
     <div class="wd-nav">
         <van-nav-bar  class="nav_bar">
             <template #right @click="show">
-                <van-icon name="setting-o" size="30" color="black"/>
+                <van-icon name="setting-o" size="30" color="black" @click="sz"/>
             </template>
         </van-nav-bar>
     </div>
@@ -21,6 +21,9 @@ export default {
     show(){
       $router.push('login')
     },
+    sz(){
+        this.$router.push('/sz')
+    }
     }
 }
 </script>

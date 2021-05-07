@@ -18,9 +18,21 @@ import search_next from '../views/xinwen/search_next.vue'
 import jiezhongcankao from '../views/home/component/components/jz-cankao/jiezhong.vue'
 import jiezhongzixun from '../views/home/component/components/jz-zixun/zixun-shouye.vue'
 import xq from '../components/xiangqing.vue'
+import sz from '../views/w-d/components/shezhi.vue'
+import dl from '../views/login/Login.vue'
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/dl',
+    name: 'dl',
+    component:dl,
+  },
+  {
+    path: '/sz',
+    name: 'sz',
+    component:sz,
+  },
   {
     path: '/xq',
     name: 'xq',

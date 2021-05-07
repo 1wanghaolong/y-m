@@ -1,3 +1,11 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2021-05-06 23:07:43
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2021-05-06 23:20:31
+-->
 <template>
   <div>
     <van-nav-bar
@@ -36,6 +44,7 @@
   </div>
 </template>
 <script>
+import { dl } from '../../components/axiosAPI'
 export default {
   data() {
     return {
@@ -45,8 +54,18 @@ export default {
     };
   },
   methods: {
-    onSubmit(values) {
-      console.log("submit", values);
+    onSubmit() {
+      dl(this.username,this.password).then((res)=>{
+        console.log(res);
+        console.log(res.data.code);
+        if (res.data.result) {
+          console.log(res.data.result);
+          sessionStorage.setItem('info',JSON.stringify(res.data.result))
+          this.$router.push('/')
+        }else{
+          alert('用户不存在，请先注册')
+        }
+      })
     },
     onClickLeft() {
       this.$router.go(-1);

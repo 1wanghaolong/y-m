@@ -27,8 +27,33 @@ let base = "http://localhost:3000";
 //     })
 
 // }
-export async function yiyuanaccess(params) {
-    return await axios.post(`${base}/detail`, qs.stringify({
-        'live_name': params
-    })); //获取特定医院信息
+export async function yiyuanaccess(params) {//获取特定医院信息
+    try {
+        return await axios.post(`${base}/detail`, qs.stringify({
+            'live_name': params
+        })); //获取特定医院信息
+    } catch (e) {
+        console.log(e, "获取失败");
+    }
+}
+export async function zhuce(username, password, sex, phone, idicator, birthday) {//注册接口
+    try {
+        return await axios.post(`/register`, qs.stringify({
+            'username': username,
+            'password': password,
+            'sex': sex,
+            'phone': phone,
+            "idicator": idicator,
+            'birthday': birthday
+        })); //获取特定医院信息
+    } catch (e) {
+        console.log(e, "获取失败");
+    }
+}
+export async function dl(username, password) {//登录接口
+    try {
+        return await axios.get(`/login/${username}&&${password}`); //获取特定医院信息
+    } catch (e) {
+        console.log(e, "获取失败");
+    }
 }

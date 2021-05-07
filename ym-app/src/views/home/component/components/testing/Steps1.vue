@@ -73,6 +73,7 @@ export default {
       birthday: "",
       currentDate: new Date(2021, 0, 17),
       data: {},
+      info:JSON.parse(sessionStorage.getItem('info'))
     };
   },
   methods: {
@@ -87,8 +88,8 @@ export default {
     }
   },
   mounted() {
-    let a = "pxy";
-    let b = "123456";
+    let a = this.info.username;
+    let b = this.info.password;
     this.axios.get(`/xinxi/${a}&&${b}`).then((res) => {
       if (res.data.code === 200) {
         console.log(res.data.result);
