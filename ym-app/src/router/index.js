@@ -20,9 +20,33 @@ import jiezhongzixun from '../views/home/component/components/jz-zixun/zixun-sho
 import xq from '../components/xiangqing.vue'
 import sz from '../views/w-d/components/shezhi.vue'
 import dl from '../views/login/Login.vue'
+import txsz from '../views/w-d/components/shezhi-components/txsz.vue'
+import yinsi from '../views/w-d/components/shezhi-components/yinsi.vue'
+import yssz from '../views/w-d/components/shezhi-components/yssz.vue'
+import mztongzhi from '../views/home/component/components/mztongzhi.vue'
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/mztongzhi',
+    name: 'mztongzhi',
+    component:mztongzhi,
+  },
+  {
+    path: '/yinsi',
+    name: 'yinsi',
+    component:yinsi,
+  },
+  {
+    path: '/yssz',
+    name: 'yssz',
+    component:yssz,
+  },
+  {
+    path: '/txsz',
+    name: 'txsz',
+    component:txsz,
+  },
   {
     path: '/dl',
     name: 'dl',

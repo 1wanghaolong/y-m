@@ -23,7 +23,7 @@
           src="img\x-g-img\2.jpg"
           alt=""
           tag="img"
-          to=""
+          to="/mztongzhi"
         ></router-link>
         <span style="margin-top: 0.2rem">门诊通知</span>
       </div>
@@ -48,10 +48,6 @@
       <div id="d-hdiv">
         <router-link tag="img" src="img\x-g-img\x-g.jpg" alt="" to="/xg" />
         <span>新冠预约</span>
-      </div>
-      <div id="d-hdiv">
-        <router-link tag="img" src="img\x-g-img\d-a.jpg" alt="" to="/xg" />
-        <span>成人档案</span>
       </div>
       <div id="icon">
         <router-link

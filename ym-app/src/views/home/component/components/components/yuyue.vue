@@ -33,7 +33,11 @@
     >
       <div style="width: 30%">
         <van-dropdown-menu>
-          <van-dropdown-item v-model="value1" :options="option1"  @change="change(value1)"/>
+          <van-dropdown-item
+            v-model="value1"
+            :options="option1"
+            @change="change(value1)"
+          />
         </van-dropdown-menu>
       </div>
       <div style="width: 70%">
@@ -46,10 +50,10 @@
       infinite-scroll-distance="10"
       style="position: relative; top: 100px"
     >
-      <router-link
-        to="/addessxq"
+      <div
         v-for="(item, i) in yuyuexq"
         :key="i"
+        @click="insurance(i)"
         style="
           display: block;
           padding: 10px 10px;
@@ -83,7 +87,7 @@
             选择门诊
           </button>
         </div>
-      </router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -112,22 +116,27 @@ export default {
     loadmore() {
       this.loading = true;
     },
-    change(value){
-       console.log(value);
-       console.log(this.option1[value].text);
-       let arr = this.option1[value].text
-       yiyuanaccess(arr).then((res) => {
-      if (res.data.code == 200) {
-        this.yuyuexq = res.data.result  
-      }
-    });
-    }
+    change(value) {
+      let arr = this.option1[value].text;
+      yiyuanaccess(arr).then((res) => {
+        if (res.data.code == 200) {
+          this.yuyuexq = res.data.result;
+        }
+        let yuyuexq = JSON.stringify(this.yuyuexq);
+        sessionStorage.setItem("yuyuexq", yuyuexq);
+      });
+    },
+    insurance(id) {
+      this.$router.push({
+        path: `/addessxq/${id}`,
+      });
+    },
   },
   mounted() {
     this.loadmore();
     yiyuanaccess(this.option1[this.value1].text).then((res) => {
       if (res.data.code == 200) {
-        this.yuyuexq = res.data.result  
+        this.yuyuexq = res.data.result;
       }
     });
   },

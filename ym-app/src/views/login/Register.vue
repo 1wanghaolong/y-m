@@ -1,9 +1,6 @@
 <template>
   <div>
-    <van-nav-bar
-      title="注册界面"
-      @click-left="onClickLeft"
-    />
+    <van-nav-bar title="注册界面" left-arrow @click-left="onClickLeft" />
     <van-form
       @submit="onSubmit"
       validate-first
@@ -67,9 +64,9 @@
       <van-field
         readonly
         clickable
-        :value="value"
+        :value="brithday"
         label="出生日期"
-        v-model="value"
+        v-model="brithday"
         placeholder="填写您的生日"
         @click="showDate = true"
       />
@@ -142,7 +139,7 @@ export default {
       sex: 1,
       isShow: false,
       currentDate: new Date("yyyy-MM-dd"),
-      value: "",
+      brithday:"",
       showDate: false,
       minDate: new Date(1990, 0, 1),
       maxDate: new Date(2021, 12, 12),
@@ -195,7 +192,7 @@ export default {
         this.sex,
         this.phone,
         this.sfz,
-        this.value
+        this.brithday
       );
       zhuce(
         this.username,
@@ -203,13 +200,13 @@ export default {
         this.sex,
         this.phone,
         this.sfz,
-        this.value
+        this.brithday
       ).then((res) => {
         console.log(res);
         if (res.data.code == 200) {
-          this.$router.push('/dl')
-        }else{
-          alert('注册失败')
+          this.$router.push("/dl");
+        } else {
+          alert("注册失败");
         }
       });
     },
@@ -223,8 +220,8 @@ export default {
 
     onConfirm(event) {
       console.log(event);
-      this.value = this.timeFormat(event);
-      console.log(this.value);
+      this.brithday = this.timeFormat(event);
+      console.log(this.brithday);
       //this.value=value.formatter(Date,value);
       /*this.value=Number(this.value).formatter("yyyy-MM-dd");*/
       this.showDate = false;
@@ -235,13 +232,13 @@ export default {
       let month = time.getMonth() + 1;
       let day = time.getDate();
       if (month < 10 && day >= 10) {
-        return year + "年" + "0" + month + "月" + day + "日";
+        return year + "-" + "0" + month + "-" + day;
       } else if (month >= 10 && day < 10) {
-        return year + "年" + month + "月" + "0" + day + "日";
+        return year + "-" + month + "-" + "0" + day;
       } else if (month >= 10 && day >= 10) {
-        return year + "年" + month + "月" + day + "日";
+        return year + "-" + month + "-" + day;
       } else {
-        return year + "年" + "0" + month + "月" + "0" + day + "日";
+        return year + "-" + "0" + month + "-" + "0" + day;
       }
     },
 

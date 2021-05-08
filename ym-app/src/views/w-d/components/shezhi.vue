@@ -11,7 +11,7 @@
     <van-cell-group>
       <van-field 
       input-align='right'
-      value='137****5427'
+      v-model="value"
       label="手机号" readonly />
       <van-field
       label='设置密码' readonly :is-link='true'/>
@@ -21,14 +21,14 @@
         安全中心
       </div>
       <van-field
-      label='隐私设置' readonly is-link/>
+      label='隐私设置' readonly is-link @click="yssz"/>
       <van-field
-      label='隐私政策' readonly is-link/>
+      label='隐私政策' readonly is-link @click="yinsi"/>
       <van-field
       label='用户协议' readonly is-link/>
       <div class="space"></div>
       <van-field
-      label='提醒设置' readonly is-link/>
+      label='提醒设置' readonly is-link  @click="txsz"/>
       <div class="space"></div>
       <van-field
       label='关于我们' readonly is-link/>
@@ -51,6 +51,7 @@
 export default {
   data() {
     return {
+      value:JSON.parse(sessionStorage.getItem("info")).phone,
       showShare: false,
       options: [
         { name: '微信', icon: 'wechat' },
@@ -73,6 +74,15 @@ export default {
     tuichu(){
       sessionStorage.removeItem('info')
       this.$router.push('/dl')
+    },
+    txsz(){
+      this.$router.push('/txsz')
+    },
+    yssz(){
+      this.$router.push('/yssz')
+    },
+    yinsi(){
+      this.$router.push('/yinsi')
     }
   },
 }

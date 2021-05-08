@@ -46,7 +46,7 @@
       <div class="x-q-dizhi">
         <div class="dizhi-xx">
           <van-icon name="clock-o" />
-          <div class="xx-span">{{ this.xq[this.id].hctime }}</div>
+          <div class="xx-span">{{ this.xq[this.id].hctime</div>
         </div>
       </div>
     </div>
@@ -95,6 +95,7 @@ export default {
       ],
       id: this.$route.params.id,
       xq: JSON.parse(sessionStorage.getItem("yuyuexq")),
+      xq2:JSON.parse(sessionStorage.getItem("yuyuexq2"))
     };
   },
   methods: {

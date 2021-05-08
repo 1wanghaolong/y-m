@@ -36,7 +36,7 @@ export async function yiyuanaccess(params) {//获取特定医院信息
         console.log(e, "获取失败");
     }
 }
-export async function zhuce(username, password, sex, phone, idicator, birthday) {//注册接口
+export async function zhuce(username, password, sex, phone, idicator, brithday) {//注册接口
     try {
         return await axios.post(`/register`, qs.stringify({
             'username': username,
@@ -44,7 +44,7 @@ export async function zhuce(username, password, sex, phone, idicator, birthday) 
             'sex': sex,
             'phone': phone,
             "idicator": idicator,
-            'birthday': birthday
+            'brithday': brithday
         })); //获取特定医院信息
     } catch (e) {
         console.log(e, "获取失败");
