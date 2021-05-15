@@ -128,50 +128,77 @@ server.post('/register', (req, res) => {
   // 获取用户名和密码信息
   let username = req.body.username;
   let password = req.body.password;
-  //以username为条件进行查找操作，以保证用户名的唯一性
-  let sql = 'SELECT COUNT(id) AS count FROM users WHERE username=?';
-  pool.query(sql, [username], (error, results) => {
+  let sex = req.body.sex;
+  let phone = req.body.phone;
+  let idicator = req.body.idicator;
+  let brithday = req.body.brithday;
+  let sql = 'INSERT users(username,password,sex,phone,idicator,brithday) VALUES(?,?,?,?,?,?)';
+  pool.query(sql, [username, password, sex, phone, idicator, brithday], (error, results) => {
     if (error) throw error;
-    let count = results[0].count;
-    if (count == 0) {
-      // 将用户的相关信息插入到数据表
-      sql = 'INSERT users(username,password) VALUES(?,MD5(?))';
-      pool.query(sql, [username, password], (error, results) => {
-        if (error) throw error;
-        res.send({ message: 'ok', code: 200 });
-      })
-    } else {
-      res.send({ message: 'user exists', code: 201 });
-    }
-  });
+    res.send({ message: 'ok', code: 200 });
+  })
 });
+// server.post('/detail', (req, res) => {
+//   //获取特定医院信息数据的接口
+//   let live_name = req.body.live_name;
+//   // SQL语句
+//   let sql = 'select live_name,hcinfor,hcaddress,hctime,vacName,vaccincount,vaccincoutnow from hcinfo  where live_name=?';
+//   pool.query(sql, [live_name], (error, results) => {
+//     if (error) throw error;
+//     if (results.length == 0) { //登录失败
+//       res.send({ message: 'login failed', code: 201 });
+//     } else {                 //登录成功
+//       res.send({ message: 'ok', code: 200, result: results[0] });
+//     }
+//   });
+
+// });
 server.post('/detail', (req, res) => {
   //获取特定医院信息数据的接口
   let live_name = req.body.live_name;
   // SQL语句
-  let sql = 'select live_name,hcinfor,hcaddress,hctime,vacName,vaccincount,vaccincoutnow from hcinfo  where live_name=?';
+  let sql = 'select * from hcinfo  where live_name=?';
   pool.query(sql, [live_name], (error, results) => {
     if (error) throw error;
     if (results.length == 0) { //登录失败
       res.send({ message: 'login failed', code: 201 });
     } else {                 //登录成功
-      res.send({ message: 'ok', code: 200, result: results[0] });
+      res.send({ message: 'ok', code: 200, result: results });
     }
   });
 
 });
 // 用户登录接口
-server.post('/login', (req, res) => {
+server.get('/login/:username&&:password', (req, res) => {
   //获取用户名和密码信息
-  let username = req.body.username;
-  let password = req.body.password;
+  let username = req.params.username;
+  let password = req.params.password;
   // SQL语句
-  let sql = 'SELECT id,username,password FROM users WHERE username=? AND password=?';
+  let sql = 'SELECT * FROM users WHERE username=? AND password=?';
   pool.query(sql, [username, password], (error, results) => {
     if (error) throw error;
-    if (results.length == 0) { //登录失败
+    if (results== null) { //登录失败
       res.send({ message: 'login failed', code: 201 });
     } else {                 //登录成功
+      res.send({ message: 'ok', code: 200, result: results[0]});
+    }
+  });
+
+});
+
+
+server.get('/xinxi/:username&&:password', (req, res) => {
+  //获取用户名和密码信息
+  let username = req.params.username;
+  let password = req.params.password;
+  console.log(username, password)
+  // SQL语句
+  let sql = 'select * from users where username=? and password=?';
+  pool.query(sql, [username, password], (error, results) => {
+    if (error) throw error;
+    if (results.length == 0) { //登录失败
+      res.send({ message: 'login failed', code: 201 });
+    } else {                 //登录成功
       res.send({ message: 'ok', code: 200, result: results[0] });
     }
   });
@@ -193,6 +220,40 @@ server.get('/shouye', (req, res) => {
   });
 
 });
+
+//接种查询页面数据接口
+server.get('/jiezhongzixun', (req, res) => {
+  //获取用户名和密码信息
+  // SQL语句
+  let sql = 'SELECT * FROM health_query';
+  pool.query(sql, (error, results) => {
+    if (error) throw error;
+    if (results.length == 0) { //登录失败
+      res.send({ message: 'login failed', code: 201 });
+    } else {                 //登录成功
+      res.send({ message: 'ok', code: 200, result: results });
+    }
+  });
+
+});
+//接种查询页面a数据接口
+server.get('/jiezhongzixuna/:id', (req, res) => {
+  //获取用户名和密码信息
+  let id = req.params.id;
+  // SQL语句
+  let sql = 'SELECT * FROM health_query WHERE id=?';
+  pool.query(sql, [id], (error, results) => {
+    if (error) throw error;
+    if (results.length == 0) { //登录失败
+      res.send({ message: 'login failed', code: 201 });
+    } else {                 //登录成功
+      res.send({ message: 'ok', code: 200, result: results[0] });
+    }
+  });
+
+});
+
+
 
 
 //健康助手数据获取接口
@@ -267,6 +328,52 @@ server.get('/neirong/:id', (req, res) => {
       res.send({ message: 'huoqu failed', code: 201 });
     } else {
       res.send({ message: 'ok', code: 200, result: results });
+    }
+  });
+
+});
+
+//获取xinwen内容二级页面数据
+server.get('/nr/:lid', (req, res) => {
+  let lid=req.params.lid;
+  // SQL语句
+  let sql = 'SELECT * from zhishi where lid=?';
+  pool.query(sql,[lid],(error, results) => {
+    if (error) throw error;
+    if(results.length == 0){ 
+      res.send({message:'huoqu failed',code:201});
+    } else {
+      res.send({message:'ok',code:200,result:results});
+    }
+  });
+
+});
+
+//获取搜索数据
+server.get('/sousuo/:keyword', (req, res) => {
+  let keyword=req.params.keyword;
+  // SQL语句
+  let sql = `SELECT * from zhishi where head like '%${keyword}%'`;
+  pool.query(sql,(error, results) => {
+    if (error) throw error;
+    if(results.length == 0){ 
+      res.send({message:'huoqu failed',code:201});
+    } else {
+      res.send({message:'ok',code:200,result:results});
+    }
+  });
+
+});
+
+//获取首页幕布流
+server.get('/shouye2', (req, res) => {
+  let sql = 'select * from shouye';
+  pool.query(sql,(error, results) => {
+    if (error) throw error;
+    if(results.length == 0){ 
+      res.send({message:'huoqu failed',code:201});
+    } else {
+      res.send({message:'ok',code:200,result:results});
     }
   });
 
