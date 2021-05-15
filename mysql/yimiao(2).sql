@@ -1,4 +1,4 @@
-SET NAMES UTF8;
+﻿SET NAMES UTF8;
 DROP DATABASE IF  EXISTS yimiao;
 CREATE DATABASE yimiao CHARSET=UTF8;
 USE yimiao; 
@@ -20,7 +20,48 @@ USE yimiao;
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
+-- ----------------------------
+-- Table structure for health_query
+-- ----------------------------
+DROP TABLE IF EXISTS `health_query`;
+CREATE TABLE `health_query`  (
+  `id` int(20) NOT NULL AUTO_INCREMENT,
+  `docname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `docinfo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
+-- ----------------------------
+-- Records of health_query
+-- ----------------------------
+INSERT INTO `health_query` VALUES (1, '陈丹丹', '徐瑾，女，坐诊于杭州杭城皮肤病医院，执业范围：皮肤病与性病专业，美容主诊医师专业：美容皮肤科专业。具有扎实的理论基础和丰富的实践经验,擅长梳理常见的预防接种反应,毕业于南阳医学高等专科学校,工作态度认真负责,知识扎实,经验丰富', 'images/17.jpg');
+INSERT INTO `health_query` VALUES (2, '石文娟', '河南省济源市龙口镇卫生院主治医师,拥有近17年计划免疫科室经验,具有扎实的理论基础和丰富的实践经验,擅长梳理常见的预防接种反应,毕业于南阳医学高等专科学校,工作态度认真负责,知识扎实,经验丰富', 'images/18.jpg');
+INSERT INTO `health_query` VALUES (3, '王丹妮', '湖南省湘潭市疾控中心主治医师,拥有近0年计划免疫临床经验,具有扎实的理论基础和丰富的实践经验,擅长梳理常见的预防接种反应,毕业于南阳医学高等专科学校,工作态度认真负责,知识扎实,经验丰富', 'images/19.jpg');
+INSERT INTO `health_query` VALUES (4, '曾燕', '四川省自贡市新街社区去卫生服务中心主治医师,拥有近30年预防接种临床经验,具有扎实的理论基础和丰富的实践经验,擅长梳理常见的预防接种反应,毕业于南阳医学高等专科学校,工作态度认真负责,知识扎实,经验丰富', 'images/20.jpg');
+INSERT INTO `health_query` VALUES (5, '黄智求', '黑龙江省大庆市龙凤区街道办事处防疫控制中心主治医师,从业多年,贼拉牛逼哨子,具有扎实的理论基础和丰富的实践经验,擅长梳理常见的预防接种反应,毕业于南阳医学高等专科学校,工作态度认真负责,知识扎实,经验丰富', 'images/21.jpg');
+INSERT INTO `health_query` VALUES (6, '雷霆', '广西壮族自治区南宁市并阳县卫生院所长兼主治医师,反正也贼拉牛逼,从业多年治好贼多人,具有扎实的理论基础和丰富的实践经验,擅长梳理常见的预防接种反应,毕业于南阳医学高等专科学校,工作态度认真负责,知识扎实,经验丰富', 'images/22.jpg');
+
+-- ----------------------------
+-- Table structure for health_query_main
+-- ----------------------------
+DROP TABLE IF EXISTS `health_query_main`;
+CREATE TABLE `health_query_main`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `docname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `docinfo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `image` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `count` int(10) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of health_query_main
+-- ----------------------------
+INSERT INTO `health_query_main` VALUES (1, '于超', '中国最好医师,经验丰富', 'images/16.jpg', 80);
+INSERT INTO `health_query_main` VALUES (2, '孟凡勇', '中国好医师,经验丰富', 'images/23.jpg', 102);
+INSERT INTO `health_query_main` VALUES (3, '雷霆嘎巴', '中国好医师,经验丰富', 'images/24.jpg', 40);
+INSERT INTO `health_query_main` VALUES (4, '王哈皮', '中国好医师,经验丰富', 'images/25.jpg', 89);
 -- ----------------------------
 -- Table structure for hcinfo
 -- ----------------------------
@@ -81,12 +122,13 @@ INSERT INTO `hcinfo` VALUES (34, '余杭区', '杭州市余杭区第五人民医
 -- ----------------------------
 DROP TABLE IF EXISTS `healthnews`;
 CREATE TABLE `healthnews`  (
-  `id` int(2) NOT NULL,
+  `id` int(20) NOT NULL,
   `newstitle` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `newsinfo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `img` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
 -- ----------------------------
 -- Records of healthnews
 -- ----------------------------
@@ -195,83 +237,83 @@ CREATE TABLE xinwen(
 	data varchar(20),
 	content varchar(2000) 
 ); 
-insert into xinwen values('宝宝是左撇子，要强行纠正吗','2017-06-04 10:17:40','<p>孩子做事情总习惯用左手，一些爸爸妈妈认为非常奇怪，有的小朋友也会因此变得不太合群。那么，如果孩子惯用左手的话，是否需要帮助孩子纠正吗？
-	</p><p>1.没有必要强行纠正</p>
-        <p>孩子和别的小朋友在一起的时候，有时候会因为使用左手导致一些问题，所以爸爸妈妈会考虑是不是要帮助孩子纠正。<br>育儿专家表示，其实没有这个必要，只要没有影响生活，用哪只手都是可以的。不过爸爸妈妈一定要赶快帮助孩子解决生活中的问题，让宝宝能够和他人和谐相处，让孩子能够收获友谊，而不是陷入独立状态。
+insert into xinwen values('宝宝是左撇子，要强行纠正吗','2017-06-04 10:17:40','<p style="text-indent:35px">孩子做事情总习惯用左手，一些爸爸妈妈认为非常奇怪，有的小朋友也会因此变得不太合群。那么，如果孩子惯用左手的话，是否需要帮助孩子纠正吗？
+	</p><p style="font-weight:600;">1.没有必要强行纠正</p>
+        <p style="text-indent:35px">孩子和别的小朋友在一起的时候，有时候会因为使用左手导致一些问题，所以爸爸妈妈会考虑是不是要帮助孩子纠正。<p  style="text-indent:35px">育儿专家表示，其实没有这个必要，只要没有影响生活，用哪只手都是可以的。不过爸爸妈妈一定要赶快帮助孩子解决生活中的问题，让宝宝能够和他人和谐相处，让孩子能够收获友谊，而不是陷入独立状态。</p>
 	</p>
-        <p>2.使用左手或更聪明</p>
-        <p>手是由大脑操控的，人类的右脑又被叫做“艺术脑”、“智慧脑”，平时使用左手的人会更多地使用右脑部分，这样就可以通过刺激脑叶而掌握更多的艺术天赋，让孩子发展地更好。<br>所以说，爸爸妈妈平时可以鼓励孩子多使用一下左手，这样可以刺激右脑的开发。平时生活中，大家都普遍使用右手，所以爸爸妈妈可以让孩子学着用左手使用剪刀、筷子等，在日常生活中多多锻炼就好。
+        <p style="font-weight:600;">2.使用左手或更聪明</p>
+        <p style="text-indent:35px">手是由大脑操控的，人类的右脑又被叫做“艺术脑”、“智慧脑”，平时使用左手的人会更多地使用右脑部分，这样就可以通过刺激脑叶而掌握更多的艺术天赋，让孩子发展地更好。<p style="text-indent:35px">所以说，爸爸妈妈平时可以鼓励孩子多使用一下左手，这样可以刺激右脑的开发。平时生活中，大家都普遍使用右手，所以爸爸妈妈可以让孩子学着用左手使用剪刀、筷子等，在日常生活中多多锻炼就好。</p>
 	</p>
-        <p>3.不妨左右手一起动</p>
-        <p>人类左右手分别由右左大脑主管，人类发展到现在，大脑只有很小的一部分被开发。所以说，平时多使用左右手能够帮助人类大脑的开发和运用。如果爸爸妈妈想让孩子变得更聪明，在孩子小的时候就要让孩子多使用左右手。<br>一些孩子经常用左手写字，效率低下，爸爸妈妈总是会要求他改正。专家建议爸爸妈妈可以用平常心看待，帮助孩子赶上学习进度，和老师进行沟通，共同对孩子进行帮助，而不是强行要求孩子换只手写字，这样学习速度反而会更慢。
+        <p style="font-weight:600;">3.不妨左右手一起动</p>
+        <p style="text-indent:35px">人类左右手分别由右左大脑主管，人类发展到现在，大脑只有很小的一部分被开发。所以说，平时多使用左右手能够帮助人类大脑的开发和运用。如果爸爸妈妈想让孩子变得更聪明，在孩子小的时候就要让孩子多使用左右手。<p style="text-indent:35px">一些孩子经常用左手写字，效率低下，爸爸妈妈总是会要求他改正。专家建议爸爸妈妈可以用平常心看待，帮助孩子赶上学习进度，和老师进行沟通，共同对孩子进行帮助，而不是强行要求孩子换只手写字，这样学习速度反而会更慢。</p>
 	</p>'
 			
 );
-insert into xinwen values('你不知道的关于宝宝爬行的小秘密','2017-06-04 09:48:09','<p>在出生几个月以后，宝宝就会开始学会爬行了。看着宝宝在地上爬来爬去的可爱样子，各位爸爸妈妈都会觉得非常幸福。事实上，在宝宝爬行过程中会有很多你不知道的小秘密，接下来就一起来看看吧。
+insert into xinwen values('你不知道的关于宝宝爬行的小秘密','2017-06-04 09:48:09','<p style="text-indent:35px">在出生几个月以后，宝宝就会开始学会爬行了。看着宝宝在地上爬来爬去的可爱样子，各位爸爸妈妈都会觉得非常幸福。事实上，在宝宝爬行过程中会有很多你不知道的小秘密，接下来就一起来看看吧。
 				</p>
-	<p>一、爬行的重要性</p>
-        <p>要是宝宝没有经历过爬行这个阶段，那么宝宝以后将会很难学会走路。宝宝爬行的时候会把全身的体重都放在四肢上，所以这时候就要求宝宝只能靠手部和腿部的力量来支撑身体。在爬行的过程中，宝宝能够锻炼四肢的肌肉，让四肢的骨头变得更加坚实。<br>
+	<p style="font-weight:600;">一、爬行的重要性</p>
+        <p style="text-indent:35px">要是宝宝没有经历过爬行这个阶段，那么宝宝以后将会很难学会走路。宝宝爬行的时候会把全身的体重都放在四肢上，所以这时候就要求宝宝只能靠手部和腿部的力量来支撑身体。在爬行的过程中，宝宝能够锻炼四肢的肌肉，让四肢的骨头变得更加坚实。</p>
 
-在爬行的过程中还能够增加宝宝身体的协调能力，让宝宝能够顺利过渡到行走。宝宝从只能坐着到可以自己爬行，这过程中扩大了宝宝的行动范围，也增加了宝宝的视野。宝宝能够接触到更多的东西，会对这个世界更加熟悉，所以，也会慢慢调动起宝宝五官的运用。<br>
+<p style="text-indent:35px">在爬行的过程中还能够增加宝宝身体的协调能力，让宝宝能够顺利过渡到行走。宝宝从只能坐着到可以自己爬行，这过程中扩大了宝宝的行动范围，也增加了宝宝的视野。宝宝能够接触到更多的东西，会对这个世界更加熟悉，所以，也会慢慢调动起宝宝五官的运用。</p>
 
-所以，爬行在宝宝成长过程中发挥很大的作用。另外，如果宝宝需要什么东西的话，他会主动爬向你。在还没有学会爬行之前，宝宝只能采用哭闹的方式告诉你他的需求，在学会了爬行之后，宝宝就能够通过自己的肢体语言来告知你他的想法，这何尝不是一种突破呢？	</p>
-        <p>二、宝宝爬行的方式</p>
-        <p>1.匍匐前进<br>
+<p style="text-indent:35px">所以，爬行在宝宝成长过程中发挥很大的作用。另外，如果宝宝需要什么东西的话，他会主动爬向你。在还没有学会爬行之前，宝宝只能采用哭闹的方式告诉你他的需求，在学会了爬行之后，宝宝就能够通过自己的肢体语言来告知你他的想法，这何尝不是一种突破呢？	</p>
+        <p style="font-weight:600;">二、宝宝爬行的方式</p>
+        <p style="font-weight:600;">1.匍匐前进<br>
 
-大部分的宝宝在刚刚开始学会爬行的时候，都会采用匍匐的方式。顾名思义，匍匐就是仅仅依靠着宝宝自己的手臂和腿来向前爬。<br>
+<p style="text-indent:35px">大部分的宝宝在刚刚开始学会爬行的时候，都会采用匍匐的方式。顾名思义，匍匐就是仅仅依靠着宝宝自己的手臂和腿来向前爬。</p>
 
-宝宝用这种姿势爬行，证明宝宝现在还不能很好地控制自己的身体，没有办法保持绝对的平衡，因此只能用单侧来行走，这是他在完全爬行之前自己的小秘诀。<br>
+<p style="text-indent:35px">宝宝用这种姿势爬行，证明宝宝现在还不能很好地控制自己的身体，没有办法保持绝对的平衡，因此只能用单侧来行走，这是他在完全爬行之前自己的小秘诀。</p>
 
-2.往后退着跑<br>
+<p style="font-weight:600;">2.往后退着跑</p>
 
-只要你经常观察一下宝宝，你就会发现宝宝爬行的方向有时候不是向前，而是往后的，这是什么原因造成的呢？<br>
+<p style="text-indent:35px">只要你经常观察一下宝宝，你就会发现宝宝爬行的方向有时候不是向前，而是往后的，这是什么原因造成的呢？</p>
 
-这主要是由于宝宝手臂的力量大于腿部的力量，如果想要向前进的话，不但要求手部的肌肉发达，腿部的肌肉力量也是非常重要的。所以如果宝宝腿部肌肉的发达程度比手臂要差的话，就只能往后爬了。<br>
+<p style="text-indent:35px">这主要是由于宝宝手臂的力量大于腿部的力量，如果想要向前进的话，不但要求手部的肌肉发达，腿部的肌肉力量也是非常重要的。所以如果宝宝腿部肌肉的发达程度比手臂要差的话，就只能往后爬了。</p>
 
-3.往前滚着跑<br>
+<p style="font-weight:600;">3.往前滚着跑</p>
 
-有的宝宝天生就比较好动，在爬行时候都不安分，宝宝会发挥自己的运动天赋往前翻滚着跑或者用屁股往前移着跑，其实这都是爱探索的宝宝所发明出来的小绝招。<br>
+<p style="text-indent:35px">有的宝宝天生就比较好动，在爬行时候都不安分，宝宝会发挥自己的运动天赋往前翻滚着跑或者用屁股往前移着跑，其实这都是爱探索的宝宝所发明出来的小绝招。</p>
 
-4.身体贴地上爬行<br>
+<p style="font-weight:600;">4.身体贴地上爬行</p>
 
-许多的宝宝由于肚子比较圆，所以就算是已经十分用力向前爬行了，可还是只能让肚子贴在地上往前爬。</p>
-        <p>三、怎样帮助宝宝爬行</p>
-        <p>1.以身作则<br>
+<p style="text-indent:35px">许多的宝宝由于肚子比较圆，所以就算是已经十分用力向前爬行了，可还是只能让肚子贴在地上往前爬。</p>
+        <p style="font-weight:600;">三、怎样帮助宝宝爬行</p>
+        <p style="font-weight:600;">1.以身作则</p>
 
-要是家里条件允许的话，爸爸妈妈可以和宝宝一起爬，有爸爸妈妈的陪伴，宝宝会觉得非常开心。有家人的关注，陪伴，这种温馨的时刻会让宝宝更有动力向前爬。<br>
+<p style="text-indent:35px">要是家里条件允许的话，爸爸妈妈可以和宝宝一起爬，有爸爸妈妈的陪伴，宝宝会觉得非常开心。有家人的关注，陪伴，这种温馨的时刻会让宝宝更有动力向前爬。</p>
 
-2.诱惑宝宝爬行<br>
+<p style="font-weight:600;">2.诱惑宝宝爬行</p>
 
-要是宝宝爬行的欲望不强的话，可以在宝宝面前放一样他喜欢的东西，让宝宝自己爬过去拿。<br>
+<p style="text-indent:35px">要是宝宝爬行的欲望不强的话，可以在宝宝面前放一样他喜欢的东西，让宝宝自己爬过去拿。</p>
 
-3.提高手部和腿部的力量<br>
+<p style="font-weight:600;">3.提高手部和腿部的力量</p>
 
-为了让宝宝可以更好地爬行，可以帮助宝宝做一些能够帮助手部和腿部肌肉增长的运动。<br>
+<p style="text-indent:35px">为了让宝宝可以更好地爬行，可以帮助宝宝做一些能够帮助手部和腿部肌肉增长的运动。</p>
 
-上面就是小编给各位爸爸妈妈的建议了。如果你的宝宝现在依旧还没有爬行的话，也不要太着急。还有很多孩子都不需要练习爬行，直接就可以直立行走了呢。s</p>'
+<p style="text-indent:35px">上面就是小编给各位爸爸妈妈的建议了。如果你的宝宝现在依旧还没有爬行的话，也不要太着急。还有很多孩子都不需要练习爬行，直接就可以直立行走了呢。</p>'
 			
 );
-insert into xinwen values('留守儿童在成长过程中会遇到的问题','2017-06-04 10:48:35','<p>因为我国特有的农民工进城务工现象，导致在乡村留下了大批的留守儿童，他们长期与父母分离，缺少父母的关爱。
+insert into xinwen values('留守儿童在成长过程中会遇到的问题','2017-06-04 10:48:35','<p style="text-indent:35px">因为我国特有的农民工进城务工现象，导致在乡村留下了大批的留守儿童，他们长期与父母分离，缺少父母的关爱。
 
 正是因为如此，这些孩子身上很容易发生问题，也就是人们常说的留守儿童现象所产生的问题，这将影响到孩子健康成长和后续融入社会学习工作生活的幸福指数。
-	</p><p>1.花钱大手大脚</p>
-        <p>由于一直没有在孩子身边，留守儿童爸爸妈妈就想着回去的时候多给孩子一些钱，给孩子买好吃的，好穿的，让孩子过着较好的物质生活。<br>
-其实爸爸妈妈这样的做法是不对的，在孩子没有人管的情况下，给孩子过多的钱会让孩子养成乱花钱的坏习惯，不懂得爸爸妈妈的钱来之不易，不懂得感恩，只会追求物质生活，造成孩子的畸形心理，对孩子的影响是很大的。
+	</p><p style="font-weight:600;">1.花钱大手大脚</p>
+        <p style="text-indent:35px">由于一直没有在孩子身边，留守儿童爸爸妈妈就想着回去的时候多给孩子一些钱，给孩子买好吃的，好穿的，让孩子过着较好的物质生活。</p>
+<p style="text-indent:35px">其实爸爸妈妈这样的做法是不对的，在孩子没有人管的情况下，给孩子过多的钱会让孩子养成乱花钱的坏习惯，不懂得爸爸妈妈的钱来之不易，不懂得感恩，只会追求物质生活，造成孩子的畸形心理，对孩子的影响是很大的。
 </p>
-        <p>2.影响学习</p>
-        <p>由于经常不和爸爸妈妈在一起，就无法得到爸爸妈妈的约束和关爱，所以亲子之间的感情会比较淡漠，家里的老人学习程度不高，无法指导孩子学习，往往让孩子吃饱穿暖就很不错了。<br>
-因此，孩子的学习态度也不认真，觉得读书不是为自己读书，这样成绩肯定很不好。而且现实情况是，大部分的留守儿童往往只读了一个初中就开始工作了，导致这种现象的原因就是缺少家庭温暖和关爱。</p>
-        <p>3.性格不好</p>
-        <p>由于一直没有受到爸爸妈妈的鼓励肯定，所以孩子的性格会慢慢变得倔强、任性。他们觉得没有人管自己，所以会变得很任性，想到什么就去做，冲动的性格令他们脾气也很大，只要有一点不顺心的就会对着家里的爷爷奶奶外公外婆发脾气。<br>
-老人年纪大了，没有办法管孩子，所以就顺其自然了。同时这样的孩子也是自卑的，他们生怕被人瞧不起，生怕有人说他们没父母，尤其是在家长会等需要父母出席的场合之下，孩子的内心很难受。</p>
-	 <p>4.没有纪律性</p>
-	 <p>因为爸爸妈妈不经常回来，家里老人又管不住自己。于是留守儿童的组织纪律性是很差的，随意迟到、无故旷课时有发生。<br>
+        <p style="font-weight:600;">2.影响学习</p>
+        <p style="text-indent:35px">由于经常不和爸爸妈妈在一起，就无法得到爸爸妈妈的约束和关爱，所以亲子之间的感情会比较淡漠，家里的老人学习程度不高，无法指导孩子学习，往往让孩子吃饱穿暖就很不错了。</p>
+<p style="text-indent:35px">因此，孩子的学习态度也不认真，觉得读书不是为自己读书，这样成绩肯定很不好。而且现实情况是，大部分的留守儿童往往只读了一个初中就开始工作了，导致这种现象的原因就是缺少家庭温暖和关爱。</p>
+        <p style="font-weight:600;">3.性格不好</p>
+        <p style="text-indent:35px">由于一直没有受到爸爸妈妈的鼓励肯定，所以孩子的性格会慢慢变得倔强、任性。他们觉得没有人管自己，所以会变得很任性，想到什么就去做，冲动的性格令他们脾气也很大，只要有一点不顺心的就会对着家里的爷爷奶奶外公外婆发脾气。</p>
+<p style="text-indent:35px">老人年纪大了，没有办法管孩子，所以就顺其自然了。同时这样的孩子也是自卑的，他们生怕被人瞧不起，生怕有人说他们没父母，尤其是在家长会等需要父母出席的场合之下，孩子的内心很难受。</p>
+	 <p style="font-weight:600;">4.没有纪律性</p>
+	 <p style="text-indent:35px">因为爸爸妈妈不经常回来，家里老人又管不住自己。于是留守儿童的组织纪律性是很差的，随意迟到、无故旷课时有发生。</p>
 
-因为爸爸妈妈在很远的地方工作，就算孩子表现不好，也没有办法请家长，爷爷奶奶对于教育又不是很懂。所以老师拿他们没有办法，时间一长孩子就变成了一个目无组织性纪律性的孩子，这对孩子的影响是非常大的。<br>
+<p style="text-indent:35px">因为爸爸妈妈在很远的地方工作，就算孩子表现不好，也没有办法请家长，爷爷奶奶对于教育又不是很懂。所以老师拿他们没有办法，时间一长孩子就变成了一个目无组织性纪律性的孩子，这对孩子的影响是非常大的。
 
-不爱学习的孩子会在很早的时候就离开学校在社会上混，结交一些不良小混混，这是非常危险的。<br>
+不爱学习的孩子会在很早的时候就离开学校在社会上混，结交一些不良小混混，这是非常危险的。</p>
 
-所以各位在外面工作的爸爸妈妈，一定要多关心家里的孩子，如果可以的话，可以把孩子带在身边，平时多回去看孩子，多跟孩子交流。</p>'
+<p style="text-indent:35px">所以各位在外面工作的爸爸妈妈，一定要多关心家里的孩子，如果可以的话，可以把孩子带在身边，平时多回去看孩子，多跟孩子交流。</p>'
 );
 DROP TABLE IF EXISTS `zhishi`;
 CREATE TABLE zhishi(
@@ -334,3 +376,54 @@ insert into nav values(null,'推荐');
 insert into nav values(null,'育儿');
 insert into nav values(null,'疫苗');
 insert into nav values(null,'健康');
+
+DROP TABLE IF EXISTS `shouye`;
+CREATE TABLE shouye(
+	lid int primary key auto_increment,
+	title varchar(72),
+	dianyue varchar(24),
+	img varchar(24)
+); 
+insert into shouye values(null,'[啪啪啪]没有性高潮怎么办？','1.5','1.jpeg');
+insert into shouye values(null,'丙肝|威力丝毫不下于乙肝，但全国仅有2%的人知道它...','1.2','2.jpeg');
+insert into shouye values(null,'生不出儿子就是女人的错？','0.2','3.jpeg');
+insert into shouye values(null,'[下面]黑不黑，和啪多少有关吗','3.1','4.jpeg');
+insert into shouye values(null,'这些避孕法，比男人的嘴更不靠谱','6.2','5.jpeg');
+insert into shouye values(null,'这两个问题，给大家提个醒，一定得注意下','3.2','6.jpeg');
+insert into shouye values(null,'从没想过生二胎，还生出离婚的念头','5.2','7.jpeg');
+insert into shouye values(null,'1岁男孩学父亲打母亲，糟糕的夫妻关系是毁掉孩子最直接的方法','2.3','8.jpeg');
+insert into shouye values(null,'雾霾和甲醛，有多远，就远离孩子','2.3','9.jpeg');
+insert into shouye values(null,'吐槽婆婆一年，是时候给你看看真相','2.3','10.jpeg');
+
+insert into shouye values(null,'不洗手是“百病之源，宝宝不爱洗','1.5','11.jpeg');
+insert into shouye values(null,'宝宝食欲不振，肝气郁结怎么办？','12','12.jpeg');
+insert into shouye values(null,'家长如何应对宝宝积痰问题？','0.2','13.jpeg');
+insert into shouye values(null,'好胎记还是坏胎记 专家教你识别','3.1','14.jpeg');
+insert into shouye values(null,'宝宝腹泻需注意的那些事儿','6.2','15.jpeg');
+insert into shouye values(null,'宝宝在医院体检后不宜多逗留','3.2','16.jpeg');
+insert into shouye values(null,'小孩尿床怎么办','5.2','17.jpeg');
+insert into shouye values(null,'刚出生的宝宝打嗝','2.3','18.jpeg');
+insert into shouye values(null,'孩子怎样预防近视','2.3','19.jpeg');
+insert into shouye values(null,'如何用物理的方法给宝宝发热降温','2.3','20.jpeg');
+
+insert into shouye values(null,'狂犬有疫苗，人心呢？','1.5','21.jpeg');
+insert into shouye values(null,'疫苗界“郭美美”，炫爱马仕包，劳斯莱斯车：孩子们的血和肉，就...','12','2.jpeg');
+insert into shouye values(null,'郑渊洁：我从1995年起就不信任一些疫苗','0.2','23.jpeg');
+insert into shouye values(null,'问题疫苗已打入21万孩子身体：比问题疫苗更可怕的是，拒绝疫苗','3.1','24.jpeg');
+insert into shouye values(null,'给鸽子做新城疫疫苗','6.2','25.jpeg');
+insert into shouye values(null,'疫苗事件：都在一条船上，别让良知泯灭','3.2','26.jpeg');
+insert into shouye values(null,'小孩尿床怎么办','5.2','27.jpeg');
+insert into shouye values(null,'疫苗事件：都在一条船上，别让良知泯灭','2.3','28.jpeg');
+insert into shouye values(null,'“盐味”疫苗','2.3','29.jpeg');
+insert into shouye values(null,'为什么疫苗事件把我们当父母的都惹毛了？','2.3','30.jpeg');
+
+insert into shouye values(null,'孩子最佳睡眠时间是多久？大多数父母都想错了','1.5','31.jpeg');
+insert into shouye values(null,'小宝宝究竟应该怎么睡，平躺还是侧躺？','12','32.jpeg');
+insert into shouye values(null,'孩子睡觉不踏实，翻来覆去是咋回事？','0.2','33.jpeg');
+insert into shouye values(null,'宝宝多大可以喝酸奶？冰箱里的酸奶给娃喝要加热吗？','3.1','34.jpeg');
+insert into shouye values(null,'宝宝腹泻需注意的那些事儿','6.2','35.jpeg');
+insert into shouye values(null,'3岁那年父母教我的孩子不记事？这2件事ta能记清清楚楚','3.2','36.jpeg');
+insert into shouye values(null,'小孩尿床怎么办','5.2','37.jpeg');
+insert into shouye values(null,'刚出生的宝宝打嗝','2.3','38.jpeg');
+insert into shouye values(null,'孩子怎样预防近视','2.3','39.jpeg');
+insert into shouye values(null,'如何用物理的方法给宝宝发热降温','2.3','40.jpeg');
