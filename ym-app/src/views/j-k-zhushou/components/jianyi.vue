@@ -4,7 +4,7 @@
  * @Author: sueRimn
  * @Date: 2021-04-24 15:23:55
  * @LastEditors: sueRimn
- * @LastEditTime: 2021-05-05 20:54:37
+ * @LastEditTime: 2021-05-14 11:08:46
 -->
 <template>
   <div class="janyi">
@@ -12,13 +12,13 @@
       <span id="span_1">养育建议</span>
       <span id="span_2">- 根据宝宝状况为你推荐</span>
     </div>
-    <div class="item" v-for="(v, i) of list" :key="i" @click="xq">
+    <div class="item" v-for="(v, i) of list" :key="i" @click="xq(v)">
       <div class="title">
         <div class="title-xq">
           <span id="z-j">专家审核</span>
           <span class="xq">{{ v.newstitle }}</span>
         </div>
-        <span class="f-w">17.4万家长读过</span>
+        <span class="f-w">{{shuliang}}</span>
       </div>
       <div class="img">
         <img :src="v.img" alt="" />
@@ -31,16 +31,17 @@ export default {
   data() {
     return {
       list: [],
+      shuliang:"17.4万家长读过"
     };
   },
   methods: {
-    xq() {
-      this.$router.push("/xq");
+    xq(v) {
+     this.$router.push({ path: "/xq", query: [v.newstitle,this.shuliang] });
     },
   },
   mounted() {
     this.axios.get("/news").then((res) => {
-      console.log(res.data.result);
+      // console.log(res.data.result);
       this.list = res.data.result;
     });
   },

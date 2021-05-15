@@ -3,44 +3,74 @@
     <div class="zs-nei">
       <p>接种知识</p>
     </div>
-    <div class="item" v-for="(v, i) of list" :key="i" @click="dianji">
+    <div class="item" v-for="(v, i) of list" :key="i" @click="dianji(v,i)">
       <div class="title">
         <div class="title-xq">
           <span id="z-j">专家审核</span>
           <span class="xq"> {{ v.title }}</span>
         </div>
-        <span class="f-w">17.4万家长读过</span>
+        <span class="f-w">{{ shuliang[i] }}</span>
       </div>
       <div class="img">
         <img :src="v.img" alt="" />
       </div>
     </div>
-    <div class="jz">
-      <span @click="jz"> 加载更多</span>
-    </div>
+    <van-list
+      v-model="loading"
+      :finished="finished"
+      finished-text="没有更多了"
+      @load="onLoad"
+      style="height: 3rem"
+    ></van-list>
   </div>
 </template>
 <script>
+import { erci } from "../../../components/axiosAPI";
 export default {
   data() {
     return {
+      loading: false,
+      finished: false,
       list: [],
+      list2: [],
+      shuliang: ['17.5万家长读过','16.5万家长读过','18.5万家长读过','15.5万家长读过','14.5万家长读过','12.5万家长读过'],
+      data: 0,
     };
   },
   methods: {
+    onLoad() {
+      setTimeout(() => {
+        erci().then((res) => {
+          for (let index = 0; index < res.data.result.length; index++) {
+            res.data.result[
+              index
+            ].img = require(`../../../assets/xwen/xinwen/${res.data.result[index].img}`);
+            this.shuliang.push(res.data.result[index].dianyue + "万家长读过")
+            this.list.push(res.data.result[this.data++]);
+          }
+          this.loading = false;
+          if (this.list.length >= 40) {
+            this.finished = true;
+          }
+        });
+      }, 2000);
+    },
     jz() {
       this.$router.push("/xinwen");
     },
-    dianji(){
-      this.$router.push("/xq");
-    }
+    dianji(v,i) {
+      this.$router.push({ path: "/xq", query: [v.title, this.shuliang[i]] });
+    },
+    erci() {},
   },
   mounted() {
     this.axios.get("/shouye").then((res) => {
-      console.log(res.data.result);
       this.list = res.data.result;
+      this.$refs.aaa;
     });
-  },
+    this.erci();
+    //  console.log(this.$store.state.user.islogin);
+  }
 };
 </script>
 <style scoped>

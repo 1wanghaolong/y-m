@@ -4,7 +4,7 @@
  * @Author: sueRimn
  * @Date: 2021-04-24 15:23:55
  * @LastEditors: sueRimn
- * @LastEditTime: 2021-05-05 16:27:19
+ * @LastEditTime: 2021-05-14 11:10:36
 -->
 <template>
   <div class="addessxq">
@@ -46,7 +46,7 @@
       <div class="x-q-dizhi">
         <div class="dizhi-xx">
           <van-icon name="clock-o" />
-          <div class="xx-span">{{ this.xq[this.id].hctime</div>
+          <div class="xx-span">{{ this.xq[this.id].hctime}}</div>
         </div>
       </div>
     </div>
@@ -103,12 +103,11 @@ export default {
       this.$router.go(-1);
     },
     onSelect(option) {
-      console.log(option);
+      // console.log(option);
       this.showShare = false;
     },
   },
   mounted() {
-    console.log(this.xq[this.id]);
   },
 };
 </script>

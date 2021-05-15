@@ -92,7 +92,7 @@ export default {
     let b = this.info.password;
     this.axios.get(`/xinxi/${a}&&${b}`).then((res) => {
       if (res.data.code === 200) {
-        console.log(res.data.result);
+        // console.log(res.data.result);
         this.data = res.data.result;
         // console.log(this.data.username);
       }

@@ -4,7 +4,7 @@
  * @Author: sueRimn
  * @Date: 2021-05-06 23:07:43
  * @LastEditors: sueRimn
- * @LastEditTime: 2021-05-06 23:20:31
+ * @LastEditTime: 2021-05-14 20:51:12
 -->
 <template>
   <div>
@@ -56,22 +56,24 @@ export default {
   methods: {
     onSubmit() {
       dl(this.username,this.password).then((res)=>{
-        console.log(res);
-        console.log(res.data.code);
+        // console.log(res);
+        // console.log(res.data.code);
         if (res.data.result) {
           console.log(res.data.result);
           sessionStorage.setItem('info',JSON.stringify(res.data.result))
           this.$router.push('/')
+          let info = res.data.result
+          this.$store.commit('edit',info)
         }else{
           alert('用户不存在，请先注册')
         }
       })
     },
     onClickLeft() {
-      this.$router.go(-1);
+      this.$router.push('/');
     },
     onFailed(errorInfo) {
-      console.log('failed', errorInfo);
+      // console.log('failed', errorInfo);
     },
   },
 };

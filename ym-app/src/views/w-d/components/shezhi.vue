@@ -67,8 +67,7 @@ export default {
     onClickLeft(){
       this.$router.go(-1);
     },
-    onSelect(option) {
-      //Toast(option.name);
+    onSelect() {
       this.showShare = false;
     },
     tuichu(){

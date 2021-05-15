@@ -1,3 +1,11 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2021-05-09 16:39:20
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2021-05-13 20:33:14
+-->
 <template>
   <div class="home">
     <tou></tou>
@@ -20,7 +28,7 @@ export default {
     swiper,
     ymzhishi,
     dibudaohang,
-  },
+  }
 };
 </script>
 <style  scoped>

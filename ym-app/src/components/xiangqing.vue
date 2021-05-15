@@ -4,7 +4,7 @@
  * @Author: sueRimn
  * @Date: 2021-05-04 14:45:39
  * @LastEditors: sueRimn
- * @LastEditTime: 2021-05-04 16:11:55
+ * @LastEditTime: 2021-05-12 01:20:49
 -->
 <template>
   <div class="xq">
@@ -22,11 +22,11 @@
       <!-- title -->
       <div class="nei-kuang">
         <!-- <title> -->
-        <div class="title">各种疫苗傻傻分不清？请看完这篇你就是半个专家</div>
+        <div class="title">{{arr[0]}}</div>
         <!-- </title> -->
         <div class="yulan">
           <van-icon name="browsing-history-o" />
-          <span>1.3万</span>
+          <span>{{arr[1]}}</span>
         </div>
         <!-- title -->
         <!-- neirong -->
@@ -74,6 +74,11 @@
 </template>
 <script>
 export default {
+  data() {
+    return {
+      arr:[]
+    }
+  },
   methods: {
     fh() {
       this.$router.go(-1);
@@ -81,6 +86,7 @@ export default {
   },
   mounted() {
     document.scrollingElement.scrollTop = 0;
+    this.arr=this.$route.query
   },
 };
 </script>

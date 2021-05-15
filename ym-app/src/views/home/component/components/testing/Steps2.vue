@@ -5,14 +5,14 @@
         <template #left>
           <van-icon
             name="arrow-left"
-            size="20"
+            size="0"
             class="arrow-left"
             @click="fh"
           />
         </template>
 
         <template #right>
-          <van-icon name="ellipsis" size="20" class="right" />
+          <van-icon name="ellipsis" size="0" class="right" />
         </template>
       </van-nav-bar>
     </div>
@@ -73,18 +73,18 @@
           placeholder="点击选择现居住地区"
           @click="show2 = true"
         />
-        <van-popup v-model="show" round position="bottom">
+        <van-popup v-model="show2" round position="bottom">
           <van-cascader
-            v-model="cascaderValue"
+            v-model="cascaderValue2"
             title="请选择所在地区"
-            :options="options"
-            @close="show = false"
-            @finish="onFinish"
-            @change="onChange"
+            :options="options2"
+            @close="show2 = false"
+            @finish="onFinish2"
+            @change="onChange2"
           />
         </van-popup>
         <van-field
-          v-model="value"
+          v-model="value2"
           label="现住详细地址"
           placeholder="请输入详细地址"
         ></van-field>
@@ -93,7 +93,7 @@
     <div class="company">
       <van-cell-group>
         <van-field
-          v-model="value"
+          v-model="danwei"
           class="cell"
           is-link
           readonly
@@ -110,28 +110,36 @@
       </van-radio-group>
     </div>
     <div class="btn">
+          <van-button type="default" class="btn1" @click="shangbu"
+        >上一步</van-button
+      >
       <van-button type="default" class="btn2 active" @click="xiabu"
         >下一步</van-button
       >
     </div>
   </div>
 </template>
+   
 <script>
 export default {
   data() {
     return {
       show: false,
       show2: false,
-      fieldValue: "" || sessionStorage.getItem("dizhi2"),
-      fieldValue2: "",
+      fieldValue: "" || sessionStorage.getItem("dizhi"),
+      fieldValue2: "" || sessionStorage.getItem("dizhi2"),
       cascaderValue: "",
+      cascaderValue2: "",
       radio: "1",
       value: "",
+      value2:"",
+      danwei:'',
       d: "",
+        d2:'',
       dizhi: { text: "下城区", value: "330100" },
-
+      dizhi2: { text: "下城区", value: "330100" },
       // 选项列表，children 代表子选项，支持多级嵌套
-      options: [
+      options2: [
         {
           text: "浙江省",
           value: "330000",
@@ -141,7 +149,7 @@ export default {
               value: "330100",
               children: [
                 { text: "滨江区", value: "330101" },
-                { text: "上城区", value: "330102" },
+                { text: "上城区", value: "33010" },
                 { text: "下城区", value: "330103" },
                 { text: "江干区", value: "330104" },
                 { text: "拱墅区", value: "330105" },
@@ -154,8 +162,35 @@ export default {
         },
         {
           text: "江苏省",
-          value: "320000",
-          children: [{ text: "南京市", value: "320100" }],
+          value: "30000",
+          children: [{ text: "南京市", value: "30100" }],
+        },
+      ],
+        options: [
+        {
+          text: "浙江省",
+          value: "330000",
+          children: [
+            {
+              text: "杭州市",
+              value: "330100",
+              children: [
+                { text: "滨江区", value: "330101" },
+                { text: "上城区", value: "33010" },
+                { text: "下城区", value: "330103" },
+                { text: "江干区", value: "330104" },
+                { text: "拱墅区", value: "330105" },
+                { text: "西湖区", value: "330106" },
+                { text: "萧山区", value: "330107" },
+                { text: "余杭区", value: "330108" },
+              ],
+            },
+          ],
+        },
+        {
+          text: "江苏省",
+          value: "30000",
+          children: [{ text: "南京市", value: "30100" }],
         },
       ],
     };
@@ -167,13 +202,27 @@ export default {
       this.show = false;
       this.fieldValue = selectedOptions.map((option) => option.text).join("/");
       // console.log(this.fieldValue);
-      sessionStorage.setItem("dizhi2", this.fieldValue);
     },
     onChange(value) {
       // console.log(value.selectedOptions);
       let a = value.selectedOptions[value.tabIndex].text;
-      this.d = a;
-      localStorage.setItem("dizhi", this.d);
+    },
+    // 全部选项选择完毕后，会触发 finish 事件
+    onFinish2({ selectedOptions, tabIndex }) {
+      // console.log(selectedOptions, tabIndex);
+      this.show2 = false;
+      this.fieldValue2 = selectedOptions.map((option) => option.text).join("/");
+      // console.log(this.fieldValue);
+      sessionStorage.setItem("dizhi2", this.fieldValue2);
+    },
+    onChange2(value) {
+      // console.log(value.selectedOptions);
+      let a = value.selectedOptions[value.tabIndex].text;
+      this.d2 = a;
+      localStorage.setItem("dizhi2", this.d2);
+    },
+      shangbu() {
+      this.$router.go(-1);
     },
     xiabu() {
       this.$router.push("/steps3");

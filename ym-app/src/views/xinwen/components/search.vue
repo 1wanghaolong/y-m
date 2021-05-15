@@ -11,14 +11,13 @@
 export default {
     data(){
         return {
-
         }
     },
      methods:{
          search(){
              let search=document.getElementById('search');
              search.onfocus=()=>{
-                 this.$router.replace('/search_next');
+                 this.$router.push('/search_next');
              }
          }
     },

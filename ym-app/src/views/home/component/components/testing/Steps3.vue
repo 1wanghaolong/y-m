@@ -79,6 +79,7 @@
               border-radius: 25px;
               border: 0;
             "
+            @click.stop="xinxi"
           >
             选择门诊
           </button>
@@ -102,7 +103,7 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      dizhi2: localStorage.getItem("dizhi"),
+      dizhi2: localStorage.getItem("dizhi2"),
       loading: false,
       value1: 0,
       value2: "a",
@@ -111,6 +112,9 @@ export default {
     };
   },
   methods: {
+     xinxi() {
+      this.$router.push("/menzhen");
+    },
     loadmore() {
       this.loading = true;
     },
@@ -131,9 +135,8 @@ export default {
   },
   mounted() {
     this.loadmore();
-    yiyuanaccess(localStorage.getItem("dizhi")).then((res) => {
+    yiyuanaccess(localStorage.getItem("dizhi2")).then((res) => {
       this.yuyue = res.data.result;
-      console.log(this.yuyue);
       let yuyuexq = JSON.stringify(this.yuyue);
       sessionStorage.setItem("yuyuexq", yuyuexq);
     });

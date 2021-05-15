@@ -59,7 +59,7 @@
         label="身份证号码"
         placeholder="请输入18位身份证号码"
         length="18"
-        :rules="sfzRules"
+        :rules="[{ sfzRules, message: '身份证输入错误' }]"
       />
       <van-field
         readonly
@@ -101,18 +101,6 @@
         placeholder="请输入手机号码"
         :rules="[{ validator, message: '手机号格式不正确' }]"
       />
-      <van-field
-        v-model="yzm"
-        center
-        clearable
-        label="手机验证码"
-        placeholder="请输入短信验证码"
-        :rules="yzmRules"
-      >
-        <template #button>
-          <van-button size="small" type="info">发送验证码</van-button>
-        </template>
-      </van-field>
       <div style="margin: 16px">
         <van-button round block type="info" native-type="submit" @click="submit"
           >注册</van-button
@@ -134,46 +122,30 @@ export default {
       password: "",
       repassword: "",
       phone: "",
-      yzm: "",
       sfz: "",
       sex: 1,
       isShow: false,
       currentDate: new Date("yyyy-MM-dd"),
-      brithday:"",
+      brithday: "",
       showDate: false,
       minDate: new Date(1990, 0, 1),
       maxDate: new Date(2021, 12, 12),
-      yzmRules: [
-        {
-          required: true,
-          message: "验证码不能为空",
-          trigger: "onBlur",
-        },
-      ],
-      sfzRules: [
-        {
-          required:
-            "^[1-9]d{5}(18|19|([23]d))d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)d{3}[0-9Xx]$",
-          message: "身份证格式错误",
-          trigger: "onBlur",
-        },
-      ],
+      sfzRules:/^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$|^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/
     };
   },
   methods: {
     submit() {
       // 全局表单验证
-      this.$refs.form
-        .validate()
+      this.$refs.form.validate()
         .then(() => {
           this.$toast.success("注册成功");
-        })
+        })  
         .catch(() => {
           this.$toast.fail("注册失败");
         });
     },
     show() {
-      console.log(333);
+      // console.log(333);
     },
     blur() {
       if (this.password == this.repassword) {
@@ -217,11 +189,10 @@ export default {
     validator(val) {
       return /^1[3456789]\d{9}$/.test(val);
     },
-
     onConfirm(event) {
-      console.log(event);
+      // console.log(event);
       this.brithday = this.timeFormat(event);
-      console.log(this.brithday);
+      // console.log(this.brithday);
       //this.value=value.formatter(Date,value);
       /*this.value=Number(this.value).formatter("yyyy-MM-dd");*/
       this.showDate = false;

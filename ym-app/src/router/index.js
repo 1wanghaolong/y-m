@@ -24,9 +24,34 @@ import txsz from '../views/w-d/components/shezhi-components/txsz.vue'
 import yinsi from '../views/w-d/components/shezhi-components/yinsi.vue'
 import yssz from '../views/w-d/components/shezhi-components/yssz.vue'
 import mztongzhi from '../views/home/component/components/mztongzhi.vue'
+import menzhen from '../views/home/component/components/components/menzhen-components/menzhen.vue'
+import nr_next from '../views/xinwen/nr_next.vue'
+import jiezhongzixuna from '../views/home/component/components/jz-zixun/yisheng-xq.vue'
+import jiezhongzixunb from '../views/home/component/components/jz-zixun/tiwen.vue'
+import store from '../store'
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path: '/jiezhongzixunb',
+    name: 'jiezhongzixunb',
+    component: jiezhongzixunb,
+  },
+  {
+    path: '/jiezhongzixuna/:id',
+    name: 'jiezhongzixuna',
+    component: jiezhongzixuna,
+  },
+  {
+    path: '/nr_next',
+    name: 'nr_next',
+    component: nr_next,
+  },
+  {
+    path: '/menzhen',
+    name: 'menzhen',
+    component:menzhen,
+  },
   {
     path: '/mztongzhi',
     name: 'mztongzhi',
@@ -61,16 +86,25 @@ const routes = [
     path: '/xq',
     name: 'xq',
     component:xq,
+    meta:{
+      requiredlogin:true
+    }
   },
   {
     path: '/jiezhongzixun',
     name: 'jiezhongzixun',
     component: jiezhongzixun,
+    meta:{
+      requiredlogin:true
+    }
   },
   {
     path: '/jiezhongcankao',
     name: 'jiezhongcankao',
     component: jiezhongcankao,
+    meta:{
+      requiredlogin:true
+    }
   },
   {
     path: '/search_next',
@@ -86,6 +120,9 @@ const routes = [
     path: '/login',
     name: 'login',
     component: login,
+    meta:{
+      dlloginredirect:true
+    }
   },
   {
     path: '/register',
@@ -130,17 +167,17 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: home,
+    component: home
   },
   {
     path: '/zhushou',
     name: 'zhushou',
-    component: zhushou
+    component: zhushou,
   },
   {
     path: '/xinwen',
     name: 'xinwen',
-    component: xinwen
+    component: xinwen,
   },
   {
     path: '/wode',
@@ -153,6 +190,16 @@ const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,
   routes
+})
+
+router.beforeEach((to,from,next)=>{
+    if (to.meta.requiredlogin && !store.state.user.islogin) {
+      next({path:'/login'})
+    }else if(to.meta.dlloginredirect && store.state.user.islogin){
+       next({path:"/"})
+    }else{
+      next()
+    }
 })
 
 export default router

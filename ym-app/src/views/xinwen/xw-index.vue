@@ -1,3 +1,11 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2021-05-09 16:39:20
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2021-05-10 19:45:27
+-->
 <template>
   <div class="xinwen">
     <search style="position:fixed;z-index:1;width:100%;"></search>
@@ -8,7 +16,7 @@
       <wenben></wenben>
       <navs></navs>
       <neirong></neirong>
-      <dibudaohang></dibudaohang>
+      <dingbudaohang></dingbudaohang>
     </div>
   </div>
 </template>
@@ -17,14 +25,14 @@ import search from "../xinwen/components/search";
 import wenben from "../xinwen/components/wenben";
 import navs from "../xinwen/components/navs";
 import neirong from "../xinwen/components/neirong";
-import dibudaohang from "../../components/dingbudaohang/daohang";
+import dingbudaohang from '../../components/dingbudaohang/daohang'
 export default {
   components: {
     search,
     wenben,
     navs,
     neirong,
-    dibudaohang
+    dingbudaohang
   },
   data(){
     return {

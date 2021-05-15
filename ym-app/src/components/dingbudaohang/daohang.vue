@@ -1,3 +1,11 @@
+<!--
+ * @Descripttion: 
+ * @version: 
+ * @Author: sueRimn
+ * @Date: 2021-05-09 16:39:20
+ * @LastEditors: sueRimn
+ * @LastEditTime: 2021-05-14 11:04:25
+-->
 <template>
   <div class="daohang">
     <van-tabbar
@@ -44,7 +52,6 @@ export default {
     shezhi() {},
     gengduo() {},
     onChange(index) {
-      console.log(index);
     },
   },
 };

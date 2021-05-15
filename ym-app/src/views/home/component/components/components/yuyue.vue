@@ -53,7 +53,7 @@
       <div
         v-for="(item, i) in yuyuexq"
         :key="i"
-        @click="insurance(i)"
+        @click="insurance(i, $event)"
         style="
           display: block;
           padding: 10px 10px;
@@ -83,6 +83,7 @@
               border-radius: 25px;
               border: 0;
             "
+            @click="xinxi($event)"
           >
             选择门诊
           </button>
@@ -113,6 +114,11 @@ export default {
     };
   },
   methods: {
+    xinxi(e) {
+      // console.log(e);
+       e.stopPropagation();
+      this.$router.push("/menzhen");
+    },
     loadmore() {
       this.loading = true;
     },
@@ -126,7 +132,8 @@ export default {
         sessionStorage.setItem("yuyuexq", yuyuexq);
       });
     },
-    insurance(id) {
+    insurance(id, event) {
+      // console.log(event);
       this.$router.push({
         path: `/addessxq/${id}`,
       });
