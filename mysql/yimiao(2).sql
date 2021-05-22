@@ -427,3 +427,103 @@ insert into shouye values(null,'小孩尿床怎么办','5.2','37.jpeg');
 insert into shouye values(null,'刚出生的宝宝打嗝','2.3','38.jpeg');
 insert into shouye values(null,'孩子怎样预防近视','2.3','39.jpeg');
 insert into shouye values(null,'如何用物理的方法给宝宝发热降温','2.3','40.jpeg');
+
+DROP TABLE IF EXISTS `shipin`;
+CREATE TABLE shipin(
+	lid int primary key auto_increment,
+	url varchar(64),
+	head varchar(64),
+	dingyue varchar(12),
+	dianzan varchar(12)
+);
+insert into shipin values(null,'sp.jpg','宝宝打疫苗在家就能搞定！不扎针，安全，不痛!','12.4','1256');
+insert into shipin values(null,'sp.jpg','肺炎是个什么鬼？戳视频，有预防妙招','17.1','1116');
+insert into shipin values(null,'sp.jpg','夏天被它咬一口，孩子竟的脑膜炎！正值高发季','2.2','556');
+insert into shipin values(null,'sp.jpg','带娃打疫苗“槽点”太多？那是你不知道这些事儿！','3.5','204');
+insert into shipin values(null,'sp.jpg','打完乙肝疫苗，怎么确认是否产生抗体？','7.4','305');
+
+DROP TABLE IF EXISTS `pinlun`;
+CREATE TABLE pinlun(
+	id int,
+	username varchar(12),
+	pl varchar(32),
+	time varchar(16)
+); 
+insert into pinlun values(1,'wyh','i按时间佛寺就佛教分配方式','2012-3-24 11:30');
+insert into pinlun values(2,'wyh','i按时间佛寺就佛教分配方式','2012-3-24 11:30');
+insert into pinlun values(1,'wyh','i按时间佛寺就佛教分配方式','2012-3-24 11:30');
+
+DROP TABLE IF EXISTS `shipu`;
+CREATE TABLE shipu(
+	id int,
+	nr varchar(124)
+);
+insert into shipu values(6,' <p>1. 优选高铁食物，如高铁米粉、红肉、动物肝脏等，<br>无顺序添加。</p>
+			      <p>2. 每次添加一种新食材，观察无过敏等不良反应再添<br>加新的食材。</p>');
+insert into shipu values(7,' <p>1. 继续添加高铁辅食，可逐渐增加肉类、蔬果、谷<br>物、奶制品的加入。</p>
+			      <p>2. 保证食物多样化，继续添加新食材，关注食物<br>的过敏现象。</p>');
+insert into shipu values(8,' <p>1. 锻炼宝宝的咀嚼能力和自主进食，可引入软烂的手指<br>食物。</p>
+			      <p>2. 食物性状：从糊状转到泥蓉状，提升辅食粗糙<br>度，保持微颗粒感。</p>');
+insert into shipu values(9,' <p>1. 继续锻炼宝宝的咀嚼能力，辅食可以过渡到小颗粒<br>状食物。</p>
+			      <p>2. 食物性状：泥蓉状，再次提升食物的粗糙度。</p>
+			      <p>3. 推荐食物：蒸好的蔬菜条、切块水果、去骨鱼...</p>');
+insert into shipu values(10,' <p>1. 食物性状：逐渐过渡到丁状小颗粒食物，比如肉菜<br>粥。</p>
+			      <p>2. 保持食物的丰富多样性，合理安排吃奶和辅食时<br>间。</p>');
+insert into shipu values(11,' <p>1. 进一步锻炼宝宝的咀嚼能力，可以给宝宝吃一些比<br>较硬的手指食物，比如苹果条、鸡肉片。</p>
+			      <p>2. 锻炼宝宝的动手能力，鼓励宝宝自主进食。</p>
+			       <p>3.辅食多样化，应包括谷物、蔬菜、水果、鱼肉...</p>');	
+insert into shipu values(12,' <p>1. 继续保持食物丰富性，可减少添加盐，饮少量蜂蜜<br>和牛奶。</p>
+			      <p>2. 及时调整食物性状，可以尝试软饭、碎肉末。</p>
+			      <p>2. 三餐时间尽量与大人保持一致。</p>');
+
+DROP TABLE IF EXISTS `yuer`;
+CREATE TABLE yuer(
+	lid int primary key auto_increment,
+	head varchar(72),
+	dianyue varchar(24),
+	image varchar(12),
+	yuer_id int
+); 
+insert into yuer values(null,'[啪啪啪]没有性高潮怎么办？','1.5','1.jpeg','6');
+insert into yuer values(null,'丙肝|威力丝毫不下于乙肝，但全国仅有2%的人知道它...','1.2','2.jpeg','6');
+insert into yuer values(null,'生不出儿子就是女人的错？','0.2','3.jpeg','6');
+insert into yuer values(null,'[下面]黑不黑，和啪多少有关吗','3.1','4.jpeg','6');
+insert into yuer values(null,'这些避孕法，比男人的嘴更不靠谱','6.2','5.jpeg','6');
+insert into yuer values(null,'这两个问题，给大家提个醒，一定得注意下','3.2','6.jpeg','6');
+insert into yuer values(null,'从没想过生二胎，还生出离婚的念头','5.2','7.jpeg','7');
+insert into yuer values(null,'1岁男孩学父亲打母亲，糟糕的夫妻关系是毁掉孩子最直接的方法','2.3','8.jpeg','7');
+insert into yuer values(null,'雾霾和甲醛，有多远，就远离孩子','2.3','9.jpeg','7');
+insert into yuer values(null,'吐槽婆婆一年，是时候给你看看真相','2.3','10.jpeg','7');
+
+insert into yuer values(null,'不洗手是“百病之源，宝宝不爱洗','1.5','11.jpeg','7');
+insert into yuer values(null,'宝宝食欲不振，肝气郁结怎么办？','12','12.jpeg','7');
+insert into yuer values(null,'家长如何应对宝宝积痰问题？','0.2','13.jpeg','7');
+insert into yuer values(null,'好胎记还是坏胎记 专家教你识别','3.1','14.jpeg','8');
+insert into yuer values(null,'宝宝腹泻需注意的那些事儿','6.2','15.jpeg','8');
+insert into yuer values(null,'宝宝在医院体检后不宜多逗留','3.2','16.jpeg','8');
+insert into yuer values(null,'小孩尿床怎么办','5.2','17.jpeg','8');
+insert into yuer values(null,'刚出生的宝宝打嗝','2.3','18.jpeg','8');
+insert into yuer values(null,'孩子怎样预防近视','2.3','19.jpeg','8');
+insert into yuer values(null,'如何用物理的方法给宝宝发热降温','2.3','20.jpeg','9');
+
+insert into yuer values(null,'狂犬有疫苗，人心呢？','1.5','21.jpeg','9');
+insert into yuer values(null,'疫苗界“郭美美”，炫爱马仕包，劳斯莱斯车：孩子们的血和肉，就...','12','2.jpeg','9');
+insert into yuer values(null,'郑渊洁：我从1995年起就不信任一些疫苗','0.2','23.jpeg','9');
+insert into yuer values(null,'问题疫苗已打入21万孩子身体：比问题疫苗更可怕的是，拒绝疫苗','3.1','24.jpeg','9');
+insert into yuer values(null,'给鸽子做新城疫疫苗','6.2','25.jpeg','9');
+insert into yuer values(null,'疫苗事件：都在一条船上，别让良知泯灭','3.2','26.jpeg','10');
+insert into yuer values(null,'小孩尿床怎么办','5.2','27.jpeg','10');
+insert into yuer values(null,'疫苗事件：都在一条船上，别让良知泯灭','2.3','28.jpeg','10');
+insert into yuer values(null,'“盐味”疫苗','2.3','29.jpeg','10');
+insert into yuer values(null,'为什么疫苗事件把我们当父母的都惹毛了？','2.3','30.jpeg','10');
+
+insert into yuer values(null,'孩子最佳睡眠时间是多久？大多数父母都想错了','1.5','31.jpeg','11');
+insert into yuer values(null,'小宝宝究竟应该怎么睡，平躺还是侧躺？','12','32.jpeg','11');
+insert into yuer values(null,'孩子睡觉不踏实，翻来覆去是咋回事？','0.2','33.jpeg','11');
+insert into yuer values(null,'宝宝多大可以喝酸奶？冰箱里的酸奶给娃喝要加热吗？','3.1','34.jpeg','11');
+insert into yuer values(null,'宝宝腹泻需注意的那些事儿','6.2','35.jpeg','11');
+insert into yuer values(null,'3岁那年父母教我的孩子不记事？这2件事ta能记清清楚楚','3.2','36.jpeg','12');
+insert into yuer values(null,'小孩尿床怎么办','5.2','37.jpeg','12');
+insert into yuer values(null,'刚出生的宝宝打嗝','2.3','38.jpeg','12');
+insert into yuer values(null,'孩子怎样预防近视','2.3','39.jpeg','12');
+insert into yuer values(null,'如何用物理的方法给宝宝发热降温','2.3','40.jpeg','12');	
