@@ -37,57 +37,57 @@ server.use(cors({
   origin: ['http://localhost:8080', 'http://127.0.0.1:8080']
 }));
 
-// 获取所有文章分类的接口
-server.get('/category', (req, res) => {
-  // SQL语句以获取文章分类表的数据
-  let sql = 'SELECT id,category_name FROM xzqa_category ORDER BY id';
-  // 执行SQL语句
-  pool.query(sql, (error, results) => {
-    if (error) throw error;
-    res.send({ message: 'ok', code: 200, results: results });
-  });
-});
+// // 获取所有文章分类的接口
+// server.get('/category', (req, res) => {
+//   // SQL语句以获取文章分类表的数据
+//   let sql = 'SELECT id,category_name FROM xzqa_category ORDER BY id';
+//   // 执行SQL语句
+//   pool.query(sql, (error, results) => {
+//     if (error) throw error;
+//     res.send({ message: 'ok', code: 200, results: results });
+//   });
+// });
 
-// 获取指定分类下包含文章数据的接口
-server.get('/articles', (req, res) => {
-  // 获取客户端传递的cid参数
-  let cid = req.query.cid;
+// // 获取指定分类下包含文章数据的接口
+// server.get('/articles', (req, res) => {
+//   // 获取客户端传递的cid参数
+//   let cid = req.query.cid;
 
-  // 获取客户端传递的page参数
-  let page = req.query.page ? req.query.page : 1;
+//   // 获取客户端传递的page参数
+//   let page = req.query.page ? req.query.page : 1;
 
-  // 存储每页显示的记录数
-  let pagesize = 20;
+//   // 存储每页显示的记录数
+//   let pagesize = 20;
 
-  // 通过公式来计算从第几条记录开始返回
-  let offset = (page - 1) * pagesize;
+//   // 通过公式来计算从第几条记录开始返回
+//   let offset = (page - 1) * pagesize;
 
-  // 用于存储获取到的总记录数
-  let rowcount;
+//   // 用于存储获取到的总记录数
+//   let rowcount;
 
-  // 获取指定分类下的文章总数
-  let sql = 'SELECT COUNT(id) AS count FROM xzqa_article WHERE category_id=?';
+//   // 获取指定分类下的文章总数
+//   let sql = 'SELECT COUNT(id) AS count FROM xzqa_article WHERE category_id=?';
 
-  pool.query(sql, [cid], (error, results) => {
-    if (error) throw error;
-    // 将获取到总记录数赋给rowcount变量
-    rowcount = results[0].count;
-    /**************************************************/
-    // 根据总记录数和每页显示的记录数来计算总页数
-    let pagecount = Math.ceil(rowcount / pagesize);
+//   pool.query(sql, [cid], (error, results) => {
+//     if (error) throw error;
+//     // 将获取到总记录数赋给rowcount变量
+//     rowcount = results[0].count;
+//     /**************************************************/
+//     // 根据总记录数和每页显示的记录数来计算总页数
+//     let pagecount = Math.ceil(rowcount / pagesize);
 
-    // 查询SQL语句
-    sql = 'SELECT id,subject,description,image FROM xzqa_article WHERE category_id=? LIMIT ?,?';
-    // 执行SQL
-    pool.query(sql, [cid, offset, pagesize], (error, results) => {
-      if (error) throw error;
-      res.send({ message: 'ok', code: 200, results: results, pagecount: pagecount });
-    });
+//     // 查询SQL语句
+//     sql = 'SELECT id,subject,description,image FROM xzqa_article WHERE category_id=? LIMIT ?,?';
+//     // 执行SQL
+//     pool.query(sql, [cid, offset, pagesize], (error, results) => {
+//       if (error) throw error;
+//       res.send({ message: 'ok', code: 200, results: results, pagecount: pagecount });
+//     });
 
-    /**************************************************/
-  });
+//     /**************************************************/
+//   });
 
-});
+// });
 
 // 获取特定医院信息数据的接口
 // server.get('/detail', (req, res) => {
@@ -105,6 +105,7 @@ server.get('/articles', (req, res) => {
 //   });
 
 // });
+// 新闻
 server.get('/head', (req, res) => {
   let sql = 'select * from xinwen';
   pool.query(sql, (err, results) => {
@@ -120,39 +121,33 @@ server.get('/xinwen/:head', (req, res) => {
     res.send({ message: 'ok', code: 200, results: results })
   });
 });
-
-
+// 新闻
 //用户注册接口
 server.post('/register', (req, res) => {
-  //console.log(md5('12345678'));
-  // 获取用户名和密码信息
   let username = req.body.username;
   let password = req.body.password;
   let sex = req.body.sex;
   let phone = req.body.phone;
   let idicator = req.body.idicator;
   let brithday = req.body.brithday;
-  let sql = 'INSERT users(username,password,sex,phone,idicator,brithday) VALUES(?,?,?,?,?,?)';
-  pool.query(sql, [username, password, sex, phone, idicator, brithday], (error, results) => {
+  //以username为条件进行查找操作，以保证用户名的唯一性
+  let sql = 'SELECT COUNT(id) AS count FROM users WHERE username=?';
+  pool.query(sql, [username], (error, results) => {
+    console.log(results);
     if (error) throw error;
-    res.send({ message: 'ok', code: 200 });
-  })
+    let count = results[0].count;
+    if (count == 0) {
+      // 将用户的相关信息插入到数据表
+      sql = 'INSERT users(username,password,sex,phone,idicator,brithday) VALUES(?,?,?,?,?,?)';
+      pool.query(sql, [username, password, sex, phone, idicator, brithday], (error, results) => {
+        if (error) throw error;
+        res.send({ message: 'ok', code: 200 });
+      })
+    } else {
+      res.send({ message: 'user exists', code: 201 });
+    }
+  });
 });
-// server.post('/detail', (req, res) => {
-//   //获取特定医院信息数据的接口
-//   let live_name = req.body.live_name;
-//   // SQL语句
-//   let sql = 'select live_name,hcinfor,hcaddress,hctime,vacName,vaccincount,vaccincoutnow from hcinfo  where live_name=?';
-//   pool.query(sql, [live_name], (error, results) => {
-//     if (error) throw error;
-//     if (results.length == 0) { //登录失败
-//       res.send({ message: 'login failed', code: 201 });
-//     } else {                 //登录成功
-//       res.send({ message: 'ok', code: 200, result: results[0] });
-//     }
-//   });
-
-// });
 server.post('/detail', (req, res) => {
   //获取特定医院信息数据的接口
   let live_name = req.body.live_name;
@@ -166,7 +161,6 @@ server.post('/detail', (req, res) => {
       res.send({ message: 'ok', code: 200, result: results });
     }
   });
-
 });
 // 用户登录接口
 server.get('/login/:username&&:password', (req, res) => {
@@ -376,7 +370,77 @@ server.get('/shouye2', (req, res) => {
       res.send({message:'ok',code:200,result:results});
     }
   });
+});
 
+//获取视频列表
+server.get('/sp', (req, res) => {
+  // SQL语句
+  let sql = 'select * from shipin';
+  pool.query(sql, (error, results) => {
+    if (error) throw error;
+    if (results.length == 0) {
+      res.send({ message: 'huoqu failed', code: 201 });
+    } else {
+      res.send({ message: 'ok', code: 200, result: results });
+    }
+  });
+
+});
+//插入评论
+server.post('/pl', (req, res) => {
+  let id = req.body.id;
+  let username = req.body.username;
+  let time = req.body.time;
+  let pinlun = req.body.pinlun;
+  // SQL语句
+  let sql = 'insert into pinlun values(?,?,?,?)';
+  pool.query(sql, [id, username, pinlun, time], (error, results) => {
+    if (error) throw error;
+    if (results.length == 0) { //登录失败
+      res.send({ message: 'login failed', code: 201 });
+    } else {
+      res.send({ message: 'ok', code: 200 });
+    }
+  });
+
+});
+//获取pinlun列表
+server.get('/pllb/:id', (req, res) => {
+  // SQL语句
+  let id = req.params.id;
+  let sql = `select * from pinlun where id=?`;
+  pool.query(sql, [id], (error, results) => {
+    if (error) throw error;
+    if (results.length == 0) {
+      res.send({ message: 'huoqu failed', code: 201 });
+    } else {
+      res.send({ message: 'ok', code: 200, result: results });
+    }
+  });
+});
+//获取食谱
+server.get('/shipu', (req, res) => {
+  let sql = `select * from shipu`;
+  pool.query(sql, (error, results) => {
+    if (error) throw error;
+    if (results.length == 0) {
+      res.send({ message: 'huoqu failed', code: 201 });
+    } else {
+      res.send({ message: 'ok', code: 200, result: results });
+    }
+  });
+});
+server.get('/yuer/:yuer_id', (req, res) => {
+  let yuer_id = req.params.yuer_id
+  let sql = `select * from yuer where yuer_id=?`;
+  pool.query(sql, [yuer_id], (error, results) => {
+    if (error) throw error;
+    if (results.length == 0) {
+      res.send({ message: 'huoqu failed', code: 201 });
+    } else {
+      res.send({ message: 'ok', code: 200, result: results });
+    }
+  });
 });
 // 指定服务器对象监听的端口号
 server.listen(3000, () => {
